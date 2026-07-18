@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Projects — Sneha Hassan" };
+export const metadata: Metadata = { title: "Projects | Sneha Hassan" };
 
 type Std = {
   title: string;
   tag: string;
   body: string;
   tags: string[];
-  link: string;
+  /** null when there's no public repo/writeup to link to yet */
+  link: string | null;
   linkLabel: string;
   card: string;
   img: string;
@@ -21,19 +22,19 @@ const standard: Std[] = [
     tag: "",
     body: "AI tutor that guides with tiered hints instead of answers. Flask + Redis sessions, Anthropic API, React frontend.",
     tags: ["Flask", "Redis", "React"],
-    link: "#",
+    link: "https://github.com/snehassan/socratic-llm",
     linkLabel: "repo →",
     card: "card--blue",
     img: "/images/socratic.svg",
-    alt: "Socratic LLM Tutor — pedagogical AI that guides with tiered hints",
+    alt: "Socratic LLM Tutor, pedagogical AI that guides with tiered hints",
   },
   {
-    title: "Pothole Detection — Ather",
+    title: "Pothole Detection at Ather",
     tag: "",
     body: "ML pipeline detecting potholes from road sensor + camera data at 92% accuracy, deployed in Ather's vehicle data infrastructure.",
     tags: ["Python", "CV", "ML"],
-    link: "#",
-    linkLabel: "case study →",
+    link: null,
+    linkLabel: "",
     card: "card--peach",
     img: "/images/pothole.svg",
     alt: "Pothole detection pipeline built at Ather Energy",
@@ -43,8 +44,8 @@ const standard: Std[] = [
     tag: "",
     body: "VR assistive-therapy platform for physical rehabilitation, currently incubated at Carnegie Mellon University.",
     tags: ["Unity", "Blender", "Python"],
-    link: "#",
-    linkLabel: "demo →",
+    link: "https://github.com/snehassan/RecoVR",
+    linkLabel: "repo →",
     card: "card--mint",
     img: "/images/recovr.jpg",
     alt: "RecoVR in-headset view of a mobility rehabilitation task",
@@ -52,10 +53,10 @@ const standard: Std[] = [
   {
     title: "Zippy",
     tag: "",
-    body: "Product research and feasibility for the world's smallest bipedal robot — sensitivity analysis, market research, technical viability.",
+    body: "Product research and feasibility for the world's smallest bipedal robot: sensitivity analysis, market research, technical viability.",
     tags: ["Product", "Robotics"],
-    link: "#",
-    linkLabel: "writeup →",
+    link: null,
+    linkLabel: "",
     card: "card--pink",
     img: "/images/zippy2.jpg",
     alt: "Zippy, the world's smallest bipedal robot, beside a LEGO minifigure for scale",
@@ -118,7 +119,7 @@ export default function Projects() {
           <img
             className="card-img"
             src="/images/biosemantic.svg"
-            alt="BioSemantic Bridge — multi-agent LLM benchmarking for biology at CMU xulab"
+            alt="BioSemantic Bridge, multi-agent LLM benchmarking for biology at CMU xulab"
             style={{ height: 240 }}
           />
           <div style={{ padding: "28px 32px 32px" }}>
@@ -169,8 +170,13 @@ export default function Projects() {
               <span className="tag">Python</span>
               <span className="tag">LLMs</span>
               <span className="tag">Bioinformatics</span>
-              <a href="#" style={{ marginLeft: "auto" }}>
-                writeup →
+              <a
+                href="https://github.com/snehassan/bioexpert"
+                target="_blank"
+                rel="noreferrer"
+                style={{ marginLeft: "auto" }}
+              >
+                repo →
               </a>
             </div>
           </div>
@@ -216,9 +222,16 @@ export default function Projects() {
                     {t}
                   </span>
                 ))}
-                <a href={p.link} style={{ marginLeft: "auto" }}>
-                  {p.linkLabel}
-                </a>
+                {p.link && (
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ marginLeft: "auto" }}
+                  >
+                    {p.linkLabel}
+                  </a>
+                )}
               </div>
             </div>
           </article>
@@ -240,14 +253,14 @@ export default function Projects() {
             }}
           >
             <li>
-              <strong>Ather Unlocked</strong> — city-wide treasure-hunt PWA for
+              <strong>Ather Unlocked</strong>: city-wide treasure-hunt PWA for
               riders
             </li>
             <li>
-              <strong>Ride Stories</strong> — ride details + EV community stats
+              <strong>Ride Stories</strong>: ride details + EV community stats
             </li>
             <li>
-              <strong>Sheetz Cooler Optimization</strong> — confidential CV
+              <strong>Sheetz Cooler Optimization</strong>: confidential CV
               restocking system
             </li>
           </ul>

@@ -1,24 +1,23 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import { scribbles } from "@/data/scribbles";
+import { resumes } from "@/data/resumes";
 
-export const metadata: Metadata = { title: "Scribbles | Sneha Hassan" };
+export const metadata: Metadata = { title: "Resume | Sneha Hassan" };
 
-// theme the shared .article-row rules/hover for this page
 const themeVars = {
-  "--rule-writing": "#d3e2f2",
-  "--writing-hover": "#e4eefa",
+  "--rule-writing": "#e0dcd0",
+  "--writing-hover": "#f3efe4",
 } as CSSProperties;
 
-export default function Scribbles() {
+export default function ResumePage() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "#eef4fb",
+        background: "#faf8f2",
         fontFamily: "var(--font-space), sans-serif",
-        color: "#16233a",
+        color: "#20201c",
         ...themeVars,
       }}
     >
@@ -34,18 +33,26 @@ export default function Scribbles() {
             margin: "48px 0 8px",
           }}
         >
-          Scribbles
+          Resume
         </h1>
-        <p style={{ fontSize: 19, color: "#4a5b78", margin: "0 0 44px", maxWidth: 560, lineHeight: 1.55 }}>
-          Links I&apos;m into: papers, tools, videos, and rabbit holes, with a
-          one-line note on why. Updated whenever something sticks.
+        <p
+          style={{
+            fontSize: 19,
+            color: "#5c5a4f",
+            margin: "0 0 44px",
+            maxWidth: 560,
+            lineHeight: 1.55,
+          }}
+        >
+          Same experience, framed for different kinds of roles. Grab whichever
+          fits the conversation.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {scribbles.map((s) => (
+          {resumes.map((r) => (
             <a
-              key={s.url}
-              href={s.url}
+              key={r.file}
+              href={r.file}
               target="_blank"
               rel="noreferrer"
               className="article-row"
@@ -54,7 +61,6 @@ export default function Scribbles() {
                 className="mono"
                 style={{
                   fontSize: 12,
-                  color: "#5f74a0",
                   marginBottom: 8,
                   display: "flex",
                   gap: 10,
@@ -63,15 +69,17 @@ export default function Scribbles() {
               >
                 <span
                   style={{
-                    border: "1px solid #b9cde6",
-                    background: "#dbe8f7",
+                    border: "1px solid #d6d1bf",
+                    background: "#efebdd",
                     padding: "2px 8px",
-                    color: "#2c4a78",
+                    color: "#6b6857",
                   }}
                 >
-                  {s.tag}
+                  PDF
                 </span>
-                <span style={{ color: "#7d8ba6" }}>{s.date}</span>
+                {r.primary && (
+                  <span style={{ color: "#8a8674" }}>DEFAULT</span>
+                )}
               </div>
               <h2
                 style={{
@@ -81,17 +89,17 @@ export default function Scribbles() {
                   lineHeight: 1.3,
                 }}
               >
-                {s.title}
+                {r.role}
               </h2>
               <p
                 style={{
                   fontSize: 17,
                   lineHeight: 1.55,
-                  color: "#4a5b78",
+                  color: "#5c5a4f",
                   margin: 0,
                 }}
               >
-                {s.note}
+                {r.blurb}
               </p>
             </a>
           ))}

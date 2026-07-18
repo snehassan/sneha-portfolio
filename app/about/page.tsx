@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { CoffeeWord } from "@/components/CoffeeWord";
 
-export const metadata: Metadata = { title: "About — Sneha Hassan" };
+export const metadata: Metadata = { title: "About | Sneha Hassan" };
 
 export default function About() {
   return (
@@ -32,7 +32,7 @@ export default function About() {
         <p style={{ fontSize: 19, lineHeight: 1.7, margin: "0 0 20px", textWrap: "pretty" }}>
           Fueled by curiosity and way too much <CoffeeWord />, I turn chaotic
           ideas into beautifully organized realities. I started in software at
-          Ather Energy, building things riders actually touched — from ML
+          Ather Energy, building things riders actually touched, from ML
           pipelines watching the road to a treasure hunt spread across an entire
           city.
         </p>
@@ -64,7 +64,7 @@ export default function About() {
             <li>Researching LLM reasoning at CMU xulab</li>
             <li>Incubating RecoVR</li>
             <li>
-              Open to interesting problems —{" "}
+              Open to interesting problems,{" "}
               <a href="mailto:snehahassan7920@gmail.com">say hi</a>
             </li>
           </ul>

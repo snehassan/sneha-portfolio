@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 const GAP = 168;
 
-/** Blocky Flight — a Minecraft-themed Flappy Bird, ported from the design prototype. */
+/** Blocky Flight, a Minecraft-themed Flappy Bird ported from the design prototype. */
 export function BlockyFlight() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 

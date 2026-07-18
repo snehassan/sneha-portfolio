@@ -35,11 +35,11 @@ const pressStart = Press_Start_2P({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://snehahassan.com"),
-  title: "Sneha Hassan — Software & AI/ML Engineer",
+  title: "Sneha Hassan | Software & AI/ML Engineer",
   description:
     "Sneha Hassan is a software and AI/ML engineer. LLM research at Carnegie Mellon's xulab, production computer vision at Ather Energy, and a few things that beep.",
   openGraph: {
-    title: "Sneha Hassan — Software & AI/ML Engineer",
+    title: "Sneha Hassan | Software & AI/ML Engineer",
     description:
       "Software and AI/ML engineer. LLM research at CMU's xulab, production CV at Ather Energy.",
     type: "website",

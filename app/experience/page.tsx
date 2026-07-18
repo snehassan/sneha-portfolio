@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Experience — Sneha Hassan" };
+export const metadata: Metadata = { title: "Experience | Sneha Hassan" };
 
 const stack = [
   "Python", "PyTorch", "LLMs / RAG", "OpenCV",
@@ -49,10 +49,10 @@ export default function Experience() {
               className="mono"
               style={{ fontSize: 13, color: "#cdbaf0", marginBottom: 6 }}
             >
-              2024 — PRESENT · PITTSBURGH
+              2024 - PRESENT · PITTSBURGH
             </div>
             <h2 style={{ fontSize: 24, margin: "0 0 10px" }}>
-              Carnegie Mellon University — Graduate Researcher
+              Carnegie Mellon University, Graduate Researcher
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.65, color: "#b9c6d8", margin: 0 }}>
               LLM benchmarking for biological reasoning at xulab; RecoVR
@@ -67,15 +67,15 @@ export default function Experience() {
               className="mono"
               style={{ fontSize: 13, color: "#cdbaf0", marginBottom: 6 }}
             >
-              2021 — 2024 · BANGALORE
+              2021 - 2024 · BANGALORE
             </div>
             <h2 style={{ fontSize: 24, margin: "0 0 10px" }}>
-              Ather Energy — Software Engineer
+              Ather Energy, Software Engineer
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.65, color: "#b9c6d8", margin: 0 }}>
               Shipped ML and product on real electric scooters: pothole detection
               (92% accuracy) in the vehicle data stack, Ride Stories community
-              app, and Ather Unlocked — a city-wide treasure-hunt PWA.
+              app, and Ather Unlocked, a city-wide treasure-hunt PWA.
             </p>
           </div>
         </div>

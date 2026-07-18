@@ -2,6 +2,7 @@ import Link from "next/link";
 import { NameHeading } from "@/components/NameHeading";
 import { SecretPixel } from "@/components/SecretPixel";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
+import { primaryResume } from "@/data/resumes";
 
 const work = [
   {
@@ -51,7 +52,7 @@ export default async function Home() {
       <NameHeading />
 
       <p style={{ margin: "0 0 20px", textWrap: "pretty" }}>
-        I&apos;m a software and AI/ML engineer. I build systems that learn — most
+        I&apos;m a software and AI/ML engineer. I build systems that learn: most
         recently benchmarking large language models on biological reasoning at
         Carnegie Mellon&apos;s xulab, and before that shipping computer vision on
         electric scooters at Ather Energy, where a pothole-detection pipeline I
@@ -86,7 +87,7 @@ export default async function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="thumb" src={w.img} alt="" aria-hidden="true" />
             <span>
-              <em className="chip-em">{w.name}</em> — {w.blurb}
+              <em className="chip-em">{w.name}</em>: {w.blurb}
             </span>
           </Link>
         ))}
@@ -131,10 +132,10 @@ export default async function Home() {
         The fastest way to reach me is{" "}
         <a href="mailto:snehahassan7920@gmail.com">snehahassan7920@gmail.com</a>.
         Here&apos;s my{" "}
-        <a href="/Resume.pdf" target="_blank" rel="noreferrer">
+        <a href={primaryResume.file} target="_blank" rel="noreferrer">
           resume
-        </a>
-        ; I&apos;m also on{" "}
+        </a>{" "}
+        (<Link href="/resume">other versions</Link>); I&apos;m also on{" "}
         <a href="https://github.com/snehassan" target="_blank" rel="noreferrer">
           GitHub
         </a>
@@ -161,7 +162,7 @@ export default async function Home() {
           color: "var(--muted)",
         }}
       >
-        P.S. — five easter eggs are hidden on this site. Happy hunting.
+        P.S. Five easter eggs are hidden on this site. Happy hunting.
       </p>
 
       <hr

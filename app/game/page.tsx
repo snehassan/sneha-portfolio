@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { BlockyFlight } from "@/components/BlockyFlight";
 
-export const metadata: Metadata = { title: "Blocky Flight — Sneha Hassan" };
+export const metadata: Metadata = { title: "Blocky Flight | Sneha Hassan" };
 
 export default function Game() {
   return (

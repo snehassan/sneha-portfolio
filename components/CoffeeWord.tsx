@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useToast } from "./ToastProvider";
 
-/** The word "coffee" on the About page — click to increment a counter. */
+/** The word "coffee" on the About page. Click to increment a counter. */
 export function CoffeeWord() {
   const { toast } = useToast();
   const [n, setN] = useState(0);

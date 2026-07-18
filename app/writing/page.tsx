@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
 
-export const metadata: Metadata = { title: "Writing — Sneha Hassan" };
+export const metadata: Metadata = { title: "Writing | Sneha Hassan" };
 
 export default async function Writing() {
   const articles = await getMediumArticles();
@@ -41,7 +41,7 @@ export default async function Writing() {
 
         {articles.length === 0 ? (
           <p style={{ fontSize: 18, color: "#5c4d3a" }}>
-            Couldn&apos;t reach Medium just now — the full archive lives{" "}
+            Couldn&apos;t reach Medium just now. The full archive lives{" "}
             <a href={MEDIUM_URL} target="_blank" rel="noreferrer">
               here
             </a>
