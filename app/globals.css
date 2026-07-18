@@ -1,0 +1,216 @@
+/* ============================================================
+   Sneha Hassan — portfolio global styles
+   Design tokens & shared component styles from the handoff.
+   ============================================================ */
+
+:root {
+  /* neutrals */
+  --ink: #1c1c1a;
+  --paper: #fcfbf8;
+  --muted: #8f8d83;
+  --muted-2: #b3b0a4;
+  --rule: #e2dfd5;
+
+  /* lavender link chip */
+  --chip: #efe8fb;
+  --chip-border: #cdbaf0;
+  --chip-hover: #ddcff6;
+
+  /* pastel accent set */
+  --pastel-lavender: #cdbaf0;
+  --pastel-blue: #b8d8f5;
+  --pastel-peach: #f5d3b0;
+  --pastel-mint: #b2e8d4;
+  --pastel-pink: #f5c3d8;
+  --pastel-gray: #d9d6cc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Uniform site-wide link: lavender pastel chip ---- */
+a {
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--chip);
+  border-bottom: 2px solid var(--chip-border);
+  padding: 0 3px;
+  transition: background 0.15s ease;
+}
+a:hover {
+  background: var(--chip-hover);
+  color: var(--ink);
+}
+
+/* Links that opt out of the chip treatment (rows, cards, back-links). */
+a.plain {
+  background: transparent;
+  border-bottom: none;
+  padding: 0;
+  color: inherit;
+}
+a.plain:hover {
+  background: transparent;
+  color: inherit;
+}
+
+/* mono back-link on inner pages */
+a.back-link {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+}
+
+/* ---- Landing project rows ---- */
+.work-row {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 16px;
+  align-items: center;
+  background: transparent;
+  border-bottom: none;
+  padding: 6px;
+  margin: -6px;
+  border-radius: 4px;
+  color: inherit;
+}
+.work-row:hover {
+  background: #f4effc;
+  color: inherit;
+}
+.work-row .thumb {
+  width: 76px;
+  height: 52px;
+  flex: none;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+}
+/* placeholder thumb when no image supplied */
+.work-row .thumb.placeholder {
+  background: linear-gradient(135deg, var(--chip) 0%, var(--pastel-blue) 100%);
+  border: 1px solid var(--chip-border);
+}
+.chip-em {
+  background: var(--chip);
+  border-bottom: 2px solid var(--chip-border);
+  padding: 0 3px;
+  font-style: italic;
+}
+
+/* ============================================================
+   Cards (inner pages): white card, ink border, hard offset shadow
+   ============================================================ */
+.card {
+  background: #fff;
+  border: 2px solid var(--ink);
+}
+.card--lavender { box-shadow: 6px 6px 0 var(--pastel-lavender); }
+.card--blue     { box-shadow: 6px 6px 0 var(--pastel-blue); }
+.card--peach    { box-shadow: 6px 6px 0 var(--pastel-peach); }
+.card--mint     { box-shadow: 6px 6px 0 var(--pastel-mint); }
+.card--pink     { box-shadow: 6px 6px 0 var(--pastel-pink); }
+.card--gray     { box-shadow: 6px 6px 0 var(--pastel-gray); }
+
+.card-img {
+  width: 100%;
+  border-bottom: 2px solid var(--ink);
+  object-fit: cover;
+  display: block;
+}
+.card-img.placeholder {
+  background:
+    repeating-linear-gradient(45deg, rgba(28,28,26,0.04) 0 12px, transparent 12px 24px),
+    linear-gradient(135deg, var(--chip) 0%, var(--pastel-mint) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  padding: 12px;
+}
+
+.tag {
+  border: 1px solid var(--ink);
+  padding: 3px 10px;
+  font-family: var(--font-mono), monospace;
+}
+
+/* ============================================================
+   Writing / Scribbles rows
+   ============================================================ */
+.article-row {
+  display: block;
+  padding: 28px 8px;
+  border-top: 1px solid var(--rule-writing, #e6d9c4);
+  border-bottom: none;
+  background: transparent;
+  color: inherit;
+}
+.article-row:hover {
+  background: var(--writing-hover, #faf0e0);
+  color: inherit;
+}
+.article-row:last-child {
+  border-bottom: 1px solid var(--rule-writing, #e6d9c4);
+}
+
+/* ============================================================
+   Footer secret pixel
+   ============================================================ */
+.footer-pixel {
+  width: 12px;
+  height: 12px;
+  background: #b8e6a8;
+  border: 2px solid #7c68b8;
+  padding: 0;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.15s ease;
+}
+.footer-pixel:hover {
+  background: #7c68b8;
+}
+
+/* ============================================================
+   Toast
+   ============================================================ */
+@keyframes toastin {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to   { transform: translate(-50%, 0);    opacity: 1; }
+}
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #ffd83d;
+  border: 3px solid #ffd83d;
+  padding: 14px 22px;
+  font-family: var(--font-pixel), monospace;
+  font-size: 10px;
+  line-height: 1.7;
+  z-index: 99;
+  animation: toastin 0.25s ease;
+  max-width: 80vw;
+  text-align: center;
+}
+
+/* utility */
+.mono { font-family: var(--font-mono), monospace; }
