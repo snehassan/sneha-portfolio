@@ -48,17 +48,36 @@ public/Resume.pdf     PLACEHOLDER — replace with your real resume
 2. On vercel.com → **Add New → Project** → import the repo. Framework is
    auto-detected as Next.js. Click **Deploy**. No env vars needed.
 
-## Custom domain (the short, no-"vercel" URL)
+## Custom domain — `sneha.is-a.dev` (free)
 
-1. Buy a domain — e.g. `snehahassan.com` or `sneha.dev`
-   (Cloudflare Registrar or Namecheap, ~$10–12/yr, at-cost on Cloudflare).
-2. Vercel → your project → **Settings → Domains** → add the domain.
-3. Vercel shows the DNS records to add. At your registrar:
-   - Apex (`snehahassan.com`): **A** record → `76.76.21.21`
-   - `www`: **CNAME** → `cname.vercel-dns.com`
-   (Vercel will show the exact current values — use those.)
-4. Wait for DNS to propagate (minutes to a couple hours). Vercel issues the
-   HTTPS cert automatically.
+Free developer subdomain from [is-a.dev](https://github.com/is-a-dev/register).
+Hosting stays free too: Vercel's Hobby tier supports custom domains.
 
-Once the domain is live, update `metadataBase` in `app/layout.tsx` to it so
+**Order matters** — their PR checklist requires the site to already be live.
+
+1. **Deploy to Vercel first** (see above).
+2. Vercel → project → **Settings → Domains** → add `sneha.is-a.dev`.
+   Vercel will say it's waiting on DNS — that's expected.
+3. Submit the is-a.dev PR. A branch is already prepared at
+   [`snehassan/register@add-sneha`](https://github.com/snehassan/register/tree/add-sneha)
+   containing `domains/sneha.json`:
+   ```json
+   {
+       "owner": { "username": "snehassan", "email": "snehahassan7920@gmail.com" },
+       "records": { "CNAME": "cname.vercel-dns.com" }
+   }
+   ```
+   Open the PR here:
+   https://github.com/is-a-dev/register/compare/main...snehassan:register:add-sneha?expand=1
+
+   Fill out their template fully — tick every box, and **include a live link
+   AND a screenshot** (PRs without a screenshot are closed with no questions).
+4. Once merged, DNS publishes within minutes and Vercel issues HTTPS
+   automatically.
+
+Then update `metadataBase` in `app/layout.tsx` to `https://sneha.is-a.dev` so
 Open Graph/SEO URLs are correct.
+
+### Backup option
+`eu.org` is also free and gives a shorter `sneha.eu.org`, but approval is manual
+and takes weeks. Worth submitting in parallel if you want it.
