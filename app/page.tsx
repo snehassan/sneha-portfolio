@@ -7,16 +7,23 @@ const work = [
   {
     name: "BioSemantic Bridge",
     blurb: "benchmarking bio-domain LLMs with a multi-agent ensemble decoder",
+    img: "/images/biosemantic.svg",
   },
   {
     name: "Socratic LLM Tutor",
     blurb: "pedagogical AI that guides with tiered hints",
+    img: "/images/socratic.svg",
   },
   {
     name: "Pothole Detection",
     blurb: "CV pipeline deployed in Ather's vehicle data stack",
+    img: "/images/pothole.svg",
   },
-  { name: "RecoVR", blurb: "VR assistive therapy, incubated at CMU" },
+  {
+    name: "RecoVR",
+    blurb: "VR assistive therapy, incubated at CMU",
+    img: "/images/recovr.jpg",
+  },
 ];
 
 // Fallback writing list if the Medium feed is unreachable at build time.
@@ -76,7 +83,8 @@ export default async function Home() {
       >
         {work.map((w) => (
           <Link key={w.name} href="/projects" className="work-row">
-            <span className="thumb placeholder" aria-hidden="true" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="thumb" src={w.img} alt="" aria-hidden="true" />
             <span>
               <em className="chip-em">{w.name}</em> — {w.blurb}
             </span>

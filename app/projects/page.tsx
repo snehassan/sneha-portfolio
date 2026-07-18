@@ -12,6 +12,7 @@ type Std = {
   linkLabel: string;
   card: string;
   img: string;
+  alt: string;
 };
 
 const standard: Std[] = [
@@ -23,7 +24,8 @@ const standard: Std[] = [
     link: "#",
     linkLabel: "repo →",
     card: "card--blue",
-    img: "Tutor UI screenshot",
+    img: "/images/socratic.svg",
+    alt: "Socratic LLM Tutor — pedagogical AI that guides with tiered hints",
   },
   {
     title: "Pothole Detection — Ather",
@@ -33,7 +35,8 @@ const standard: Std[] = [
     link: "#",
     linkLabel: "case study →",
     card: "card--peach",
-    img: "Detection pipeline / road footage",
+    img: "/images/pothole.svg",
+    alt: "Pothole detection pipeline built at Ather Energy",
   },
   {
     title: "RecoVR",
@@ -43,7 +46,8 @@ const standard: Std[] = [
     link: "#",
     linkLabel: "demo →",
     card: "card--mint",
-    img: "RecoVR still / headset shot",
+    img: "/images/recovr.jpg",
+    alt: "RecoVR in-headset view of a mobility rehabilitation task",
   },
   {
     title: "Zippy",
@@ -53,7 +57,8 @@ const standard: Std[] = [
     link: "#",
     linkLabel: "writeup →",
     card: "card--pink",
-    img: "Zippy robot photo",
+    img: "/images/zippy2.jpg",
+    alt: "Zippy, the world's smallest bipedal robot, beside a LEGO minifigure for scale",
   },
 ];
 
@@ -109,12 +114,13 @@ export default function Projects() {
       >
         {/* Featured */}
         <article className="card card--lavender" style={{ gridColumn: "1/-1" }}>
-          <div
-            className="card-img placeholder"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="card-img"
+            src="/images/biosemantic.svg"
+            alt="BioSemantic Bridge — multi-agent LLM benchmarking for biology at CMU xulab"
             style={{ height: 240 }}
-          >
-            BioSemantic Bridge — screenshot or diagram
-          </div>
+          />
           <div style={{ padding: "28px 32px 32px" }}>
             <div
               style={{
@@ -173,9 +179,13 @@ export default function Projects() {
         {/* Standard cards */}
         {standard.map((p) => (
           <article key={p.title} className={`card ${p.card}`}>
-            <div className="card-img placeholder" style={{ height: 170 }}>
-              {p.img}
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="card-img"
+              src={p.img}
+              alt={p.alt}
+              style={{ height: 170 }}
+            />
             <div style={{ padding: "24px 28px 28px" }}>
               <h2 style={{ fontSize: 22, margin: 0 }}>{p.title}</h2>
               <p
