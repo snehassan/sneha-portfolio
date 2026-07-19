@@ -1,12 +1,10 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { jobs, stack } from "@/data/experience";
 
 export const metadata: Metadata = { title: "Experience | Sneha Hassan" };
 
-const stack = [
-  "Python", "PyTorch", "LLMs / RAG", "OpenCV",
-  "React", "Flask", "Redis", "Firebase",
-];
 
 function Marker() {
   return (
@@ -43,41 +41,23 @@ export default function Experience() {
         </h1>
 
         <div style={{ display: "grid", gridTemplateColumns: "24px 1fr", gap: 24 }}>
-          <Marker />
-          <div style={{ paddingBottom: 44 }}>
-            <div
-              className="mono"
-              style={{ fontSize: 13, color: "#cdbaf0", marginBottom: 6 }}
-            >
-              2024 - PRESENT · PITTSBURGH
-            </div>
-            <h2 style={{ fontSize: 24, margin: "0 0 10px" }}>
-              Carnegie Mellon University, Graduate Researcher
-            </h2>
-            <p style={{ fontSize: 16, lineHeight: 1.65, color: "#b9c6d8", margin: 0 }}>
-              LLM benchmarking for biological reasoning at xulab; RecoVR
-              incubation; product research for Zippy, the world&apos;s smallest
-              bipedal robot; CV capstone with Sheetz.
-            </p>
-          </div>
-
-          <Marker />
-          <div style={{ paddingBottom: 44 }}>
-            <div
-              className="mono"
-              style={{ fontSize: 13, color: "#cdbaf0", marginBottom: 6 }}
-            >
-              2021 - 2024 · BANGALORE
-            </div>
-            <h2 style={{ fontSize: 24, margin: "0 0 10px" }}>
-              Ather Energy, Software Engineer
-            </h2>
-            <p style={{ fontSize: 16, lineHeight: 1.65, color: "#b9c6d8", margin: 0 }}>
-              Shipped ML and product on real electric scooters: pothole detection
-              (92% accuracy) in the vehicle data stack, Ride Stories community
-              app, and Ather Unlocked, a city-wide treasure-hunt PWA.
-            </p>
-          </div>
+          {jobs.map((job) => (
+            <Fragment key={job.title}>
+              <Marker />
+              <div style={{ paddingBottom: 44 }}>
+                <div
+                  className="mono"
+                  style={{ fontSize: 13, color: "#cdbaf0", marginBottom: 6 }}
+                >
+                  {job.period}
+                </div>
+                <h2 style={{ fontSize: 24, margin: "0 0 10px" }}>{job.title}</h2>
+                <p style={{ fontSize: 16, lineHeight: 1.65, color: "#b9c6d8", margin: 0 }}>
+                  {job.body}
+                </p>
+              </div>
+            </Fragment>
+          ))}
         </div>
 
         <div style={{ border: "1px solid #2a3c56", padding: "24px 28px" }}>
