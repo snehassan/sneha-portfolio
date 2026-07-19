@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1013"/>
+      <stop offset="100%" style="stop-color:#20161d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- left screen -->
+  <rect x="132" y="118" width="220" height="132" rx="8" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.55"/>
+  <path d="M226 160 L262 184 L226 208 Z" fill="#ef4444" opacity="0.7"/>
+  <rect x="148" y="228" width="188" height="5" rx="2.5" fill="#ef4444" opacity="0.25"/>
+  <rect x="148" y="228" width="104" height="5" rx="2.5" fill="#ef4444" opacity="0.75"/>
+
+  <!-- right screen -->
+  <rect x="448" y="118" width="220" height="132" rx="8" fill="none" stroke="#f472b6" stroke-width="2" opacity="0.55"/>
+  <path d="M542 160 L578 184 L542 208 Z" fill="#f472b6" opacity="0.7"/>
+  <rect x="464" y="228" width="188" height="5" rx="2.5" fill="#f472b6" opacity="0.25"/>
+  <rect x="464" y="228" width="104" height="5" rx="2.5" fill="#f472b6" opacity="0.75"/>
+
+  <!-- sync link -->
+  <path d="M360 172 L440 172" stroke="#fbbf24" stroke-width="2" opacity="0.6" stroke-dasharray="6 6"/>
+  <path d="M440 196 L360 196" stroke="#fbbf24" stroke-width="2" opacity="0.6" stroke-dasharray="6 6"/>
+  <path d="M432 166 L442 172 L432 178 Z" fill="#fbbf24" opacity="0.8"/>
+  <path d="M368 190 L358 196 L368 202 Z" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="400" cy="184" r="17" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.45"/>
+
+  <text x="400" y="360" text-anchor="middle" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="28" font-weight="600">YouJam</text>
+  <text x="400" y="395" text-anchor="middle" fill="#8a6b72" font-family="system-ui, sans-serif" font-size="14">Watch YouTube in Sync, Wherever Your Friends Are</text>
+</svg>

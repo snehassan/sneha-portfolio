@@ -51,6 +51,28 @@ const standard: Std[] = [
     alt: "RecoVR in-headset view of a mobility rehabilitation task",
   },
   {
+    title: "Daily OS",
+    tag: "",
+    body: "Recovery-aware daily scheduler that pulls your Whoop recovery score, HRV and wake time, then picks and time-shifts the right schedule for the day. Installable PWA with a full schedule editor.",
+    tags: ["TypeScript", "Next.js", "Whoop API"],
+    link: "https://github.com/snehassan/daily-os",
+    linkLabel: "repo →",
+    card: "card--lavender",
+    img: "/images/daily-os.svg",
+    alt: "Daily OS, recovery-aware scheduling driven by Whoop data",
+  },
+  {
+    title: "YouJam",
+    tag: "",
+    body: "Chrome extension that keeps YouTube playback in sync across friends, Spotify-Jam style. Any participant can play, pause or seek and everyone follows. MV3 with Firebase Realtime Database.",
+    tags: ["JavaScript", "Chrome MV3", "Firebase"],
+    link: "https://github.com/snehassan/YouJam",
+    linkLabel: "repo →",
+    card: "card--peach",
+    img: "/images/youjam.svg",
+    alt: "YouJam, watching YouTube in sync with friends",
+  },
+  {
     title: "Zippy",
     tag: "",
     body: "Product research and feasibility for the world's smallest bipedal robot: sensitivity analysis, market research, technical viability.",
@@ -97,8 +119,8 @@ export default function Projects() {
               lineHeight: 1.55,
             }}
           >
-            Research, production ML, and a few things that beep. Five favorites
-            below, plus the archive.
+            Research, production ML, and a few things that beep. Favorites below,
+            plus the archive.
           </p>
         </div>
       </div>
