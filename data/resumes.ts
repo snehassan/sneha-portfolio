@@ -20,19 +20,9 @@ export const resumes: Resume[] = [
     primary: true,
   },
   {
-    role: "AI / ML Engineering",
-    file: "/resumes/sneha-hassan-ai-engineer.pdf",
-    blurb: "LLM research, benchmarking, computer vision, and applied ML.",
-  },
-  {
     role: "Solutions Engineering",
     file: "/resumes/sneha-hassan-solutions-engineer.pdf",
     blurb: "Customer-facing technical work, integrations, and demos.",
-  },
-  {
-    role: "Developer Relations",
-    file: "/resumes/sneha-hassan-devrel.pdf",
-    blurb: "Writing, talks, and developer education.",
   },
   {
     role: "Product",
