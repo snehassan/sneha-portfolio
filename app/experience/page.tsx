@@ -42,7 +42,7 @@ export default function Experience() {
 
         <div style={{ display: "grid", gridTemplateColumns: "24px 1fr", gap: 24 }}>
           {jobs.map((job) => (
-            <Fragment key={job.title}>
+            <Fragment key={job.org + job.period}>
               <Marker />
               <div style={{ paddingBottom: 44 }}>
                 <div
@@ -51,10 +51,33 @@ export default function Experience() {
                 >
                   {job.period}
                 </div>
-                <h2 style={{ fontSize: 24, margin: "0 0 10px" }}>{job.title}</h2>
-                <p style={{ fontSize: 16, lineHeight: 1.65, color: "#b9c6d8", margin: 0 }}>
-                  {job.body}
-                </p>
+                <h2 style={{ fontSize: 24, margin: "0 0 2px" }}>{job.org}</h2>
+                <div
+                  style={{
+                    fontSize: 17,
+                    fontStyle: "italic",
+                    color: "#8fa3bf",
+                    marginBottom: 12,
+                  }}
+                >
+                  {job.role}
+                </div>
+                <ul
+                  style={{
+                    fontSize: 16,
+                    lineHeight: 1.65,
+                    color: "#b9c6d8",
+                    margin: 0,
+                    paddingLeft: 20,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 8,
+                  }}
+                >
+                  {job.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
               </div>
             </Fragment>
           ))}
