@@ -34,7 +34,7 @@ const pressStart = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://snehahassan.com"),
+  metadataBase: new URL("https://sneha.is-a.dev"),
   title: "Sneha Hassan | Software & AI/ML Engineer",
   description:
     "Sneha Hassan is a software and AI/ML engineer. LLM research at Carnegie Mellon's xulab, production computer vision at Ather Energy, and a few things that beep.",
