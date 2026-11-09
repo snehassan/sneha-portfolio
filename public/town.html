@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="town">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sneha Hassan | Software &amp; AI/ML Engineer</title>
+<meta name="description" content="Sneha Hassan is a software and AI/ML engineer. LLM research at Carnegie Mellon's xulab, production ML at Ather Energy, and a tiny town where every building is something she built.">
+<meta property="og:title" content="Sneha Hassan | Software &amp; AI/ML Engineer">
+<meta property="og:description" content="Software and AI/ML engineer. Explore a tiny town where every building is something she built.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://sneha.is-a.dev/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fcfbf8'/%3E%3Crect x='7' y='7' width='18' height='18' fill='%23efe8fb' stroke='%23cdbaf0' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' text-anchor='middle' fill='%231c1c1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--round:"Rubik",ui-rounded,system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+html[data-mode="town"]{--bg:#FCE6D6;--ink:#3A1410;--ink2:#8E2A1E;--card:#FFF8F0;--accent:#E63B2E;--chip:#FBD9C6;--line:#3A1410;--plain:#3A1410;--plainInk:#FFF1E6;--hl:#FFC24B}
+html[data-mode="rec"]{--bg:#FFFFFF;--ink:#111111;--ink2:#555555;--card:#FFFFFF;--accent:#000000;--chip:#F2F2F2;--line:#000000;--plain:#FFFFFF;--plainInk:#111111;--hl:#000000;--g1:#555555;--g2:#000000}
+html[data-mode="fit"]{--bg:#E8EAF6;--ink:#1A0B3A;--ink2:#4A148C;--card:#FFFFFF;--accent:#4A148C;--chip:#EDE7F6;--line:#1A0B3A;--plain:#1A0B3A;--plainInk:#E8EAF6;--hl:#E0F2F1;--g1:#4A148C;--g2:#004D40}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);overflow-x:hidden;transition:background .4s}
+body{font-family:var(--mono);color:var(--ink);font-size:14px;line-height:1.55}
+a{color:inherit}button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.stage{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) 390px;grid-template-rows:auto 1fr;position:relative}
+.intro{grid-column:1;grid-row:1;padding:30px 40px 0;position:relative;z-index:3;pointer-events:none;max-width:640px}
+.intro a,.intro button{pointer-events:auto}
+.intro h1{font-family:var(--round);font-weight:900;font-size:clamp(44px,5.4vw,82px);line-height:.9;letter-spacing:-.02em}
+.intro p{max-width:48ch;margin-top:12px}
+.intro .open{font-size:12px;margin-top:8px;opacity:.75}
+html[data-mode="rec"] .intro h1{text-transform:uppercase;letter-spacing:.01em;font-weight:800}
+html[data-mode="fit"] .intro h1{font-size:clamp(28px,3.2vw,46px);line-height:.95;text-shadow:3px 0 #4A148C55,-3px 0 #004D4055}
+html[data-mode="rec"] .intro h1{animation:soft 4.5s steps(1) infinite}
+@keyframes soft{0%,95%{text-shadow:none;transform:none}96%{text-shadow:3px 0 #555555,-3px 0 #000000;transform:translateX(2px)}98%{text-shadow:-2px 0 #555555,2px 0 #000000;transform:translateX(-1px)}}
+
+/* mode switch */
+.modes{display:inline-flex;align-items:center;gap:0;border:2.5px solid var(--line);border-radius:999px;padding:3px;margin-bottom:18px;background:var(--card);position:relative}
+.modes button{border:none;background:none;border-radius:999px;padding:6px 14px;font-family:var(--round);font-weight:700;font-size:13px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--line);color:var(--card)}
+html[data-mode="rec"] .modes button[aria-pressed="true"]{color:#FFFFFF}
+.modes .ghost{width:14px;height:14px;padding:0;margin:0 6px 0 4px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px);opacity:.35}
+.modes .ghost:hover{opacity:1;animation:shiver .15s steps(2) infinite}
+.modes .ghost[aria-pressed="true"]{background:var(--accent);opacity:1}
+@keyframes shiver{50%{transform:translate(1px,-1px)}}
+
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pill{font-family:var(--round);font-weight:700;font-size:14px;text-decoration:none;border:2.5px solid var(--line);border-radius:999px;padding:7px 16px;background:var(--card);box-shadow:0 3px 0 var(--line);transition:transform .1s,box-shadow .1s;display:inline-block;cursor:pointer}
+.pill:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.pill.dark{background:var(--line);color:var(--card)}
+html[data-mode="rec"] .pill{border-radius:4px;box-shadow:0 0 0 var(--line)} html[data-mode="rec"] .pill.dark{color:#FFFFFF}
+html[data-mode="fit"] .pill{border-radius:0}
+
+.scene{grid-column:1;grid-row:1/3;position:relative;height:100vh;min-height:640px}
+svg#town{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+html[data-mode="rec"] .stage{background:linear-gradient(#FFFFFF 0%,#FFFFFF 45%,#F5F5F5 82%,#E0E0E0 100%)}
+html[data-mode="rec"] .scene::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.035) 0 1px,transparent 1px 3px)}
+.stream{fill:none;stroke:#555555;stroke-width:1;stroke-dasharray:3 9;animation:flow .9s linear infinite;opacity:.55}
+@keyframes flow{to{stroke-dashoffset:-12}}
+.fr path{fill:none;stroke:#000000;stroke-width:1.8}.fr text{fill:#000000;font:600 9px var(--mono);letter-spacing:.05em}
+.bld{cursor:pointer;transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
+.bld:hover,.bld:focus-visible,.bld.sel{transform:translateY(-7px)}
+.bld:focus{outline:none}
+.tag{pointer-events:none;opacity:0;transition:opacity .15s}
+.bld:hover .tag,.bld:focus-visible .tag,.bld.sel .tag{opacity:1}
+html[data-mode="fit"] .tag{opacity:1}
+.tag rect{fill:var(--ink)} .tag text{fill:var(--card);font:600 11px var(--mono)}
+.ping{fill:none;stroke-width:2.5;animation:ping .9s ease-out forwards}
+@keyframes ping{from{opacity:1;transform:scale(.2)}to{opacity:0;transform:scale(1.8)}}
+.wave{fill:none;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:wave 2.4s ease-out infinite}
+.wave.b{animation-delay:.8s}.wave.c{animation-delay:1.6s}
+@keyframes wave{from{opacity:.9;transform:scale(.3)}to{opacity:0;transform:scale(2.2)}}
+.blink{animation:blink 1.6s steps(1) infinite}.blink.d2{animation-delay:.5s}.blink.d3{animation-delay:1.1s}
+@keyframes blink{50%{opacity:.15}}
+.holo{pointer-events:none}
+.holo rect{fill:rgba(255,255,255,.9);stroke:#555555;stroke-width:1.2}
+.holo text{fill:#555555;font:600 11px var(--mono);letter-spacing:.06em}
+.bbox{fill:none;stroke:#4A148C;stroke-width:1.3;stroke-dasharray:4 3;pointer-events:none}
+.blabel{font:600 9.5px var(--mono);fill:#fff;pointer-events:none}
+.ghosts{pointer-events:none}
+
+.hud{position:absolute;left:40px;bottom:22px;z-index:3;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--line);color:var(--card);border-radius:10px;padding:8px 12px;display:flex;gap:14px;flex-wrap:wrap;max-width:calc(100% - 470px)}
+html[data-mode="rec"] .hud{background:#FFFFFFcc;border:1.5px solid var(--accent);border-radius:3px;color:#555555}
+html[data-mode="fit"] .hud{border-radius:0;background:#4A148C;color:#E8EAF6}
+.hud b{color:var(--hl);font-weight:600}
+html[data-mode="town"] .hud b{color:#FFC24B}
+html[data-mode="fit"] .hud b{color:#A7FFEB}
+html[data-mode="rec"] .hud b{color:#000000}
+
+/* card */
+.card{grid-column:2;grid-row:1/3;padding:26px 26px 26px 0;position:sticky;top:0;height:100vh;display:flex}
+.card .inner{background:var(--card);border:2.5px solid var(--line);border-radius:22px;box-shadow:0 6px 0 var(--line);padding:22px 22px 20px;display:flex;flex-direction:column;gap:12px;width:100%;overflow:auto}
+html[data-mode="rec"] .card .inner{border-radius:4px;box-shadow:0 0 0 1px #55555544,0 0 28px #5555551a}
+html[data-mode="fit"] .card .inner{border-radius:0;box-shadow:6px 6px 0 var(--accent)}
+.kick{font-size:11px;text-transform:uppercase;letter-spacing:.07em;opacity:.75}
+.card h2{font-family:var(--round);font-weight:800;font-size:32px;line-height:1;letter-spacing:-.01em}
+html[data-mode="rec"] .card h2{text-transform:uppercase;letter-spacing:.01em}
+.flavor{font-family:var(--round);font-weight:500;font-size:16px;line-height:1.35;color:var(--ink2)}
+.impact{font-family:var(--round);font-weight:800;font-size:20px;color:var(--accent);line-height:1.15}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.card li{padding-left:16px;position:relative;font-size:13px}
+.card li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:11px;border:1.5px solid var(--line);border-radius:999px;padding:1px 9px}
+html[data-mode="rec"] .chip{border-radius:3px;border-color:#55555577}
+.more{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:6px;flex-wrap:wrap}
+.nav{display:flex;gap:6px}
+.nav button{width:36px;height:36px;border-radius:50%;border:2.5px solid var(--line);background:var(--chip);cursor:pointer;font-weight:600}
+.nav button:hover{background:var(--accent);color:var(--card)}
+.dir{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dir button{text-align:left;font-size:12px;border:1.5px solid var(--line);border-radius:10px;background:transparent;padding:6px 9px;cursor:pointer}
+.dir button:hover{background:var(--chip)}
+html[data-mode="rec"] .dir button{border-radius:3px;border-color:#55555555}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.stats div{background:var(--chip);border-radius:12px;padding:8px 9px;font-size:10.5px;line-height:1.3}
+html[data-mode="rec"] .stats div{border-radius:3px;border:1px solid #55555533}
+html[data-mode="rec"] .kick.alert{color:#000000;opacity:1}
+.stats b{display:block;font-family:var(--round);font-weight:800;font-size:21px;line-height:1.1;color:var(--accent)}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:4px 10px;font-size:12px}
+.kv dt{opacity:.6;text-transform:uppercase;font-size:10.5px;letter-spacing:.06em;padding-top:2px}
+.glitch{position:relative;animation:jit 2.2s steps(1) infinite}
+@keyframes jit{0%,92%{transform:none;text-shadow:none}93%{transform:translate(-2px,1px);text-shadow:3px 0 var(--g1),-2px 0 var(--g2)}96%{transform:translate(2px,-1px);text-shadow:-3px 0 var(--g1),2px 0 var(--g2)}}
+.legend{height:10px;background:linear-gradient(90deg,#E8EAF6,#D1C4E9,#B39DDB,#7E57C2,#4A148C);border:1px solid #1A0B3A}
+.lg{display:flex;justify-content:space-between;font-size:10px;opacity:.75;margin-top:3px}
+.conf{font-size:10px;border:1px solid var(--accent);color:var(--accent);padding:0 4px;margin-right:6px}
+.loss{display:block;width:100%;height:auto;flex:none;border:1.5px solid var(--line)}
+
+/* recruiter brief */
+.brief{display:none}
+html[data-mode="rec"] .brief{display:block;background:#FFFFFF}
+html[data-mode="rec"] .intro{display:none}
+html[data-mode="rec"] .stage{border-top:1.5px solid #E0E0E0}
+.bin{max-width:1240px;margin:0 auto;padding:30px 40px 40px}
+.bhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:22px}
+.brief h1{font-family:var(--round);font-weight:800;text-transform:uppercase;font-size:clamp(42px,5vw,72px);line-height:.9;animation:soft 4.5s steps(1) infinite}
+.bsum{max-width:62ch;margin-top:12px}.brief .open{font-size:12px;opacity:.7;margin-top:6px}
+.brief .links{margin-top:0;align-items:center}.mail{font-size:12px;opacity:.8;width:100%}
+.bstats{grid-template-columns:repeat(6,1fr)}
+.bh{font-family:var(--round);font-weight:800;text-transform:uppercase;font-size:22px;letter-spacing:.04em;margin:30px 0 12px;padding-bottom:8px;border-bottom:1.5px solid #E0E0E0}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:1180px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+html[data-mode="rec"] .plain{display:none}
+.pc{border:1.5px solid #DDDDDD;padding:16px;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;transition:border-color .15s}
+.pc:hover{border-color:#000}
+.pc .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;opacity:.6}
+.pc h3{font-family:var(--round);font-weight:800;font-size:20px;line-height:1.05;text-transform:uppercase}
+.pc .mt{font-family:var(--round);font-weight:700;font-size:15px;color:#000}
+.pc p{font-size:12.5px;opacity:.85}
+.pc .row2{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:8px}
+.pc .chips .chip{border-radius:3px;border-color:#BBBBBB;font-size:10.5px}
+.pc a.go{font-size:11px;white-space:nowrap}
+.xlist{display:flex;flex-direction:column}
+.xr{display:grid;grid-template-columns:260px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid #E6E6E6}
+.xr h3{font-family:var(--round);font-weight:800;font-size:18px;text-transform:uppercase;line-height:1.1}
+.xr .k{font-size:11px;opacity:.6;margin-top:4px}.xr .mt{font-family:var(--round);font-weight:700;margin-top:8px;color:#000}
+.xr ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.xr li{padding-left:14px;position:relative}.xr li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:#000}
+.tocity{display:flex;gap:14px;align-items:baseline;margin-top:30px;font-family:var(--round);font-weight:800;font-size:20px;text-transform:uppercase;text-decoration:none}
+.tocity span{font-family:var(--mono);font-weight:400;font-size:12px;text-transform:none;opacity:.6}
+@media (max-width:980px){.bin{padding:24px 18px}.bstats{grid-template-columns:repeat(3,1fr)}.pgrid{grid-template-columns:1fr}.xr{grid-template-columns:1fr;gap:8px}.mail{text-align:left}}
+.sitenav{margin-top:28px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;opacity:.8}
+.sitenav a{text-decoration:none;border-bottom:1px solid currentColor}
+/* plain */
+.plain{background:var(--plain);color:var(--plainInk);padding:64px 40px 56px}
+.plain .in{max-width:1080px;margin:0 auto}
+.plain h3{font-family:var(--round);font-weight:800;font-size:40px;line-height:1;margin-bottom:6px}
+.plain .sub{opacity:.7;font-size:12px;margin-bottom:30px}
+.rows{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
+.row{border-top:1.5px solid color-mix(in srgb,var(--plainInk) 25%,transparent);padding:16px 0;display:grid;grid-template-columns:130px 1fr;gap:16px}
+.row .when{font-size:11px;opacity:.65;text-transform:uppercase;letter-spacing:.05em;padding-top:3px}
+.row b{font-family:var(--round);font-weight:700;font-size:18px;display:block}
+.row span{font-size:12.5px;opacity:.85}
+.foot{margin-top:40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:12px}
+.foot .big{font-family:var(--round);font-weight:900;font-size:30px;color:var(--accent)}
+html[data-mode="town"] .foot .big{color:#FFC24B}
+
+@media (max-width:980px){
+  .stage{grid-template-columns:1fr;grid-template-rows:auto auto auto auto}
+  .intro{padding:22px 18px 0;pointer-events:auto}
+  .scene{grid-row:2;height:auto;min-height:0;aspect-ratio:880/760;margin:4px 0 10px}
+  .hud{grid-row:3;position:static;margin:0 16px 16px;max-width:none;font-size:10px;gap:4px 12px}
+  .card{grid-column:1;grid-row:4;position:static;height:auto;padding:0 14px 26px}
+  .rows{grid-template-columns:1fr}.plain{padding:48px 18px}.row{grid-template-columns:96px 1fr}
+}
+@media (prefers-reduced-motion:reduce){.bld,.wave,.ping,.blink,.glitch{transition:none;animation:none}}
+</style>
+</head>
+<body>
+<section class="brief" id="brief" aria-label="Recruiter summary"><div class="bin">
+  <div class="modes" role="group" aria-label="View mode">
+    <button data-mode="town" aria-pressed="false">Visitor</button>
+    <button data-mode="rec" aria-pressed="true">Recruiter</button>
+    <button data-mode="fit" class="ghost" aria-pressed="false" aria-label="Overfit mode" title="epoch 9999"></button>
+  </div>
+  <div class="bhead">
+    <div><h1>Sneha Hassan</h1><p class="bsum">Software &amp; AI Engineer. About 3 years shipping ML and full-stack systems to production at Ather Energy, Telvue and Carnegie Mellon. MS, Carnegie Mellon.</p>
+    <p class="open">Based in the United States &nbsp;|&nbsp; Open to SWE · AI Engineer · FDE · DevRel · Solutions &nbsp;|&nbsp; SF · NYC · Boston · Seattle · London · remote</p></div>
+    <div class="links"><a class="pill dark" href="/resume">Resume</a><a class="pill" href="https://linkedin.com/in/sneha-hassan">LinkedIn</a><a class="pill" href="https://github.com/snehassan">GitHub</a><span class="mail">snehahassan7920@gmail.com</span></div>
+  </div>
+  <div class="stats bstats"><div><b>50K+</b>daily users on a PWA</div><div><b>+25%</b>accuracy, 3-LLM ensemble</div><div><b>92%</b>pothole model, deployed</div><div><b>+40%</b>mobile engagement, 13K users</div><div><b>100K+</b>users on APIs</div><div><b>32→78%</b>test coverage</div></div>
+  <h2 class="bh">Projects</h2><div class="pgrid" id="pgrid"></div>
+  <h2 class="bh">Experience</h2><div class="xlist" id="xlist"></div>
+  <nav class="sitenav" aria-label="More of the site"><a href="/projects">Projects</a><a href="/experience">Experience</a><a href="/writing">Writing</a><a href="/resume">All resumes</a><a href="/classic">Classic site</a></nav>
+  <a class="tocity" href="#city" onclick="event.preventDefault();document.getElementById('city').scrollIntoView({behavior:'smooth'})">Explore the city ↓ <span>every tower is one of the files above</span></a>
+</div></section>
+<div class="stage" id="city">
+  <header class="intro">
+    <div class="modes" role="group" aria-label="View mode">
+      <button data-mode="town" aria-pressed="true">Visitor</button>
+      <button data-mode="rec" aria-pressed="false">Recruiter</button>
+      <button data-mode="fit" class="ghost" aria-pressed="false" aria-label="Overfit mode" title="epoch 9999"></button>
+    </div>
+    <div id="introBody"></div>
+  </header>
+  <div class="scene"><svg id="town" viewBox="0 0 1000 740" preserveAspectRatio="xMaxYMax meet" role="img" aria-label="An isometric town where each building is one of Sneha's projects or jobs"></svg></div>
+  <div class="hud" id="hud" aria-live="off"></div>
+  <aside class="card" aria-live="polite"><div class="inner" id="card"></div></aside>
+</div>
+
+<section class="plain" id="plain"><div class="in">
+  <h3>The plain-text version</h3>
+  <p class="sub">Same town, no scooter.</p>
+  <div class="rows">
+    <div class="row"><div class="when">Feb 2026 to now</div><div><b>CMU xulab · Graduate Researcher, GenAI</b><span>Three-LLM ensemble with majority voting: +25% accuracy on 296 bioinformatics benchmarks. Built an 8B tool-calling LLM and async auto-grading evals.</span></div></div>
+    <div class="row"><div class="when">May to Aug 2025</div><div><b>Telvue · Software Developer Intern</b><span>Event-driven push notifications on Rails + Firebase: +40% mobile engagement across 13K+ users. Led a 4-person team; design-to-prod from 3 weeks to under 2.</span></div></div>
+    <div class="row"><div class="when">Oct 2023 to Nov 2024</div><div><b>Ather Energy · Software Developer</b><span>Fleet dashboard for 3 enterprise clients and 200+ vehicles. Carbon-tracking PWA at 50K+ DAU. Pothole model at 92% accuracy. Test coverage 32% to 78%.</span></div></div>
+    <div class="row"><div class="when">Feb to Oct 2023</div><div><b>Ather Energy · Software Developer Intern</b><span>6 Spring Boot APIs for 100K+ users, search latency down 40%. Campaign PWA in 10+ cities, 25K+ sign-ups in month one.</span></div></div>
+    <div class="row"><div class="when">Founder</div><div><b>RecoVR</b><span>VR physiotherapy platform, incubated at CMU. Unity, Blender, Python.</span></div></div>
+    <div class="row"><div class="when">Side projects</div><div><b>Socratic Tutor · Daily OS · YouJam · Zippy</b><span>An AI tutor that won't give answers, a WHOOP-driven scheduler, synced YouTube for friends, and the world's smallest bipedal robot.</span></div></div>
+  </div>
+  <div class="foot">
+    <div class="big">Say hi.</div>
+    <div>snehahassan7920@gmail.com<br><a href="https://github.com/snehassan">GitHub</a> · <a href="https://linkedin.com/in/sneha-hassan">LinkedIn</a> · <a href="https://medium.com/@snehassan123">Medium</a> · <a href="/resume">Resume</a></div>
+  </div>
+  <nav class="sitenav" aria-label="More of the site"><a href="/projects">Projects</a><a href="/experience">Experience</a><a href="/writing">Writing</a><a href="/scribbles">Scribbles</a><a href="/about">About</a><a href="/game">Game</a><a href="/classic">Classic site</a></nav>
+</div></section>
+
+<script>
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("town");
+const A=29,B=14.5,C=17,OX=540,OY=262;
+const P=(x,y,z)=>[(x-y)*A+OX,(x+y)*B-z*C+OY];
+const pts=a=>a.map(p=>p.map(n=>n.toFixed(1)).join(",")).join(" ");
+const el=(t,at,par)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);if(par)par.appendChild(e);return e};
+const poly=(g,a,fill,extra={})=>el("polygon",{points:pts(a),fill,...extra},g);
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isMob=()=>matchMedia("(max-width:980px)").matches;
+// deterministic random
+let rs=7;const rnd=()=>{rs=(rs*16807)%2147483647;return (rs-1)/2147483646};
+
+const THEMES={
+ town:{sky:"#FCE6D6",sun:"#FFC24B",sunR:72,gT:"#9CC47C",gL:"#6E8F55",gR:"#83A866",u1:"#9A6248",u2:"#7A4A36",road:"#3B2B29",line:"#FFE3A3",inner:"#B5D493",
+   wallR:"#FFF4E6",wallL:"#EBCDB3",roof:"#C0392B",roofL:"#962A1F",win:"#FFD36B",winOff:"#C9A991",door:"#7A2219",trunk:"#8A5A44",accent:"#E63B2E",
+   tree:["#5AA552","#43873E","#76BE68"],cloud:"#FFF6EE",hm:1,pole:"#B98A76",screen:"#3B2B29",ping:"#FFC24B",scoot:["#E63B2E","#B8281E","#FF6A5C"],teal:"#7FD8D4",ringBg:"#E4C2AE",ring:"#5AA552"},
+ rec:{sky:"#FFFFFF",sun:"#EDEDED",sunR:120,gT:"#F4F4F4",gL:"#C9C9C9",gR:"#DEDEDE",u1:"#9E9E9E",u2:"#7A7A7A",road:"#1A1A1A",line:"#FFFFFF",inner:"#FAFAFA",
+   wallR:"#F2F2F2",wallL:"#D6D6D6",roof:"#FFFFFF",roofL:"#E4E4E4",win:"#6E6E6E",winOff:"#E0E0E0",door:"#1A1A1A",trunk:"#BDBDBD",accent:"#000000",data:"#6E6E6E",
+   tree:["#EDEDED","#D4D4D4","#FFFFFF"],cloud:"#EDEDED",hm:2.2,pole:"#1A1A1A",screen:"#111111",ping:"#000000",scoot:["#111111","#000000","#444444"],teal:"#6E6E6E",ringBg:"#E0E0E0",ring:"#111111"},
+ fit:{sky:"#E8EAF6",sun:"#4A148C",sunR:60,gT:"#F3F4FB",gL:"#C5CAE9",gR:"#D9DCF0",u1:"#4A148C",u2:"#311B92",road:"#4A148C",line:"#E8EAF6",inner:"#EDE7F6",
+   wallR:"#FFFFFF",wallL:"#D1C4E9",roof:"#7E57C2",roofL:"#4A148C",win:"#4A148C",winOff:"#D1C4E9",door:"#4A148C",trunk:"#4A148C",accent:"#4A148C",
+   tree:["#6A1B9A","#4A148C","#8E24AA"],cloud:"#FFFFFF",hm:1,pole:"#4A148C",screen:"#1A0B3A",ping:"#004D40",scoot:["#00796B","#004D40","#4DB6AC"],teal:"#4DB6AC",ringBg:"#D1C4E9",ring:"#00796B"}
+};
+let MODE="town",T=THEMES.town;
+const HEAT=["#E8EAF6","#D1C4E9","#B39DDB","#7E57C2","#4A148C"];
+const hexMix=(a,b,t)=>"#"+[1,3,5].map(i=>Math.round(parseInt(a.substr(i,2),16)*(1-t)+parseInt(b.substr(i,2),16)*t).toString(16).padStart(2,"0")).join("");
+const heatCol=w=>{const x=Math.max(0,Math.min(.999,w))*4,i=Math.floor(x);return hexMix(HEAT[i],HEAT[i+1],x-i)};
+const W={cmu:.98,bio:.62,recovr:.4,telvue:.76,ather:.86,daily:.3,socratic:.52,youjam:.46,zippy:.08,writing:.2};
+function heat(id){if(MODE!=="fit")return;const w=W[id];T.roof=heatCol(w);T.roofL=heatCol(Math.min(1,w+.15));T.wallL=hexMix("#FFFFFF",heatCol(w),.35);T.wallR=hexMix("#FFFFFF",heatCol(w),.12)}
+
+/* ---------- content ---------- */
+const INFO={
+ cmu:{n:"CMU xulab tower",k:"Graduate Researcher, GenAI · Feb 2026 to now · Pittsburgh",m:"+25% accuracy · 296 benchmarks",f:"Three lit windows at the top, three models inside. They vote, and the majority wins.",
+   b:["Fine-tuned an ensemble of three domain-specialized LLMs with majority voting and consensus-based iterative training: +25% accuracy across 296 bioinformatics benchmarks.","Built and deployed a custom 8B-parameter LLM with tool calling, plus async eval infrastructure that grades benchmarks automatically."],t:["LLMs","Fine-tuning","Ensembles","Evals"],fl:"skyscraper 1.000"},
+ bio:{n:"BioSemantic Bridge",k:"Research · CMU xulab · with Runmin Jiang",m:"205 BixBench questions",f:"The helix on the roof never stops turning. Neither does the eval queue.",
+   b:["Benchmarks biology-domain LLMs with a multi-agent ensemble decoder.","Evaluated on 205 BixBench questions."],t:["Python","LLMs","Bioinformatics"],u:"https://github.com/snehassan/bioexpert",fl:"spaghetti 0.61"},
+ recovr:{n:"RecoVR",k:"Founder · incubated at Carnegie Mellon",m:"Founder · CMU incubator",f:"The headset on the roof is the whole pitch: rehab you can step into.",
+   b:["VR assistive-therapy platform for physical rehabilitation.","Founded and incubated at CMU."],t:["Unity","Blender","Python"],u:"https://github.com/snehassan/RecoVR",fl:"hospital 0.93"},
+ telvue:{n:"Telvue broadcast",k:"Software Developer Intern · May to Aug 2025 · Mt. Laurel, NJ",m:"+40% engagement · 13K+ users",f:"Those rings are push notifications. 13,000 people got them.",
+   b:["Built an event-driven push notification system with Rails microservices and the Firebase Admin SDK, with pub/sub triggers and retry logic: +40% mobile engagement across 13K+ users.","Led a 4-person cross-functional team to unify notification UX on iOS and Android, cutting design-to-production from 3 weeks to under 2."],t:["Rails","Firebase","Pub/Sub","iOS","Android"],fl:"radio tower 0.97"},
+ ather:{n:"Ather depot",k:"Software Developer · Feb 2023 to Nov 2024 · Bangalore",m:"50K+ DAU · 200+ fleet vehicles",f:"Where I learned to ship to people who ride what you build.",
+   b:["Architected a B2B fleet dashboard on real-time IoT telemetry (remote immobilizer, GPS, diagnostics) used by 3 enterprise clients to manage 200+ vehicles.","Shipped a carbon-footprint tracking PWA serving 50K+ daily active users; caching cut end-to-end latency 25%.","Owned a cross-team test automation platform: coverage from 32% to 78%, QA cycle time down 45% across 4 squads.","Developed 6 Spring Boot APIs for 100K+ users (search latency down 40%) and a campaign PWA with 25K+ sign-ups in its first month."],t:["React","Spring Boot","React Native","Firebase","Java","Flutter"],fl:"solar farm 0.88"},
+ pothole:{n:"Pothole detection",k:"Machine learning · Ather Energy",m:"92% accuracy · +35% adoption",f:"Watch the scooter. Every time it rolls over a pothole, the model flags it.",
+   b:["Trained and deployed a pothole detection model with signal processing on accelerometer data: 92% accuracy on real roads.","Deployed in the vehicle data stack; safety-feature adoption rose 35%."],t:["Python","Signal processing","ML"],fl:"pothole 0.92"},
+ daily:{n:"Daily OS",k:"Side project",m:"WHOOP API · installable PWA",f:"The ring above the roof is today's recovery score. The house rearranges itself around it.",
+   b:["Pulls WHOOP recovery, HRV and wake time, then picks and time-shifts the day's schedule.","Installable PWA with a full schedule editor."],t:["Next.js","TypeScript","WHOOP API"],u:"https://github.com/snehassan/daily-os",fl:"donut 0.77"},
+ socratic:{n:"Socratic LLM Tutor",k:"Side project",m:"Tiered hints · Anthropic API",f:"The flag on the schoolhouse is a question mark, because this tutor only asks them.",
+   b:["An AI tutor that refuses to give you the answer.","Guides learners with tiered hints until they get there themselves."],t:["Flask","Redis","React","Anthropic API"],u:"https://github.com/snehassan/socratic-llm",fl:"church 0.71"},
+ youjam:{n:"YouJam",k:"Side project",m:"Real-time sync · Firebase RTDB",f:"Two screens, one beat. Pause one and the other pauses too.",
+   b:["Chrome extension that keeps YouTube playback in sync across friends.","Anyone can play, pause or seek, and everyone follows."],t:["JavaScript","Chrome MV3","Firebase RTDB"],u:"https://github.com/snehassan/YouJam",fl:"television 0.84"},
+ zippy:{n:"Zippy",k:"Product research · robotics",m:"Feasibility + market research",f:"Shown at actual size. You may need to lean in.",
+   b:["Product research and feasibility for the world's smallest bipedal robot.","Covered sensitivity analysis, market research and technical viability."],t:["Robotics","Product research"],fl:"nothing 0.50"},
+ writing:{n:"The newsstand",k:"Writing · Medium",m:"3 essays on Medium",f:"Long-form thoughts, freshly printed.",
+   b:["I let my sleep tracker rearrange my calendar. Here's how I wired it up.","How does a website survive 2 million people yelling GOALLL at the exact same millisecond?","The packet was sealed. That was the entire promise."],t:["Medium"],u:"https://medium.com/@snehassan123",fl:"food truck 0.66"}
+};
+function fillBrief(){
+  const P=["bio","pothole","recovr","socratic","daily","youjam","zippy","writing"],X=["cmu","telvue","ather"];
+  document.getElementById("pgrid").innerHTML=P.map(id=>{const c=INFO[id];return `<article class="pc"><div class="k">${c.k}</div><h3>${id==="writing"?"Writing":c.n}</h3><div class="mt">${c.m}</div><p>${c.b.join(" ")}</p>
+    <div class="row2"><div class="chips">${c.t.map(x=>`<span class="chip">${x}</span>`).join("")}</div>${c.u?`<a class="go" href="${c.u}" target="_blank" rel="noopener">${id==="writing"?"Read":"Code"} ↗</a>`:""}</div></article>`}).join("");
+  document.getElementById("xlist").innerHTML=X.map(id=>{const c=INFO[id];const name={cmu:"Carnegie Mellon · xulab",telvue:"Telvue",ather:"Ather Energy"}[id];
+    return `<div class="xr"><div><h3>${name}</h3><div class="k">${c.k}</div><div class="mt">${c.m}</div></div><ul>${c.b.map(x=>`<li>${x}</li>`).join("")}</ul></div>`}).join("");
+}
+const ORDER=["cmu","bio","recovr","telvue","ather","pothole","daily","socratic","youjam","zippy","writing"];
+
+/* ---------- geometry helpers ---------- */
+function box(g,x,y,z,w,d,h,c={}){
+  poly(g,[P(x+w,y,z),P(x+w,y+d,z),P(x+w,y+d,z+h),P(x+w,y,z+h)],c.r||T.wallR);
+  poly(g,[P(x,y+d,z),P(x+w,y+d,z),P(x+w,y+d,z+h),P(x,y+d,z+h)],c.l||T.wallL);
+  poly(g,[P(x,y,z+h),P(x+w,y,z+h),P(x+w,y+d,z+h),P(x,y+d,z+h)],c.t||T.roof);
+}
+const winR=(g,x,y,z,u,v,uw,vh,f)=>poly(g,[P(x,y+u,z+v),P(x,y+u+uw,z+v),P(x,y+u+uw,z+v+vh),P(x,y+u,z+v+vh)],f||T.win);
+const winL=(g,x,y,z,u,v,uw,vh,f)=>poly(g,[P(x+u,y,z+v),P(x+u+uw,y,z+v),P(x+u+uw,y,z+v+vh),P(x+u,y,z+v+vh)],f||T.win);
+function windows(g,x,y,w,d,h,{rows,cols=3,start=.5,gap=.9,lit=.75}){
+  const strips=MODE==="rec";
+  const R=strips?Math.max(1,Math.floor((h-start)/gap)):rows;
+  for(let r=0;r<R;r++)for(let i=0;i<cols;i++){
+    const on=rnd()<lit, f=on?T.win:T.winOff;
+    if(strips){ if(i)continue;
+      winR(g,x+w+.01,y,0,.18,start+r*gap,d-.36,.16,on?(rnd()<.35?"#000000":T.win):T.winOff);
+      winL(g,x,y+d+.01,0,.18,start+r*gap,w-.36,.16,rnd()<lit?(rnd()<.35?"#000000":T.win):T.winOff);continue}
+    winR(g,x+w+.01,y,0,.25+i*(d-.5)/cols,start+r*gap,(d-.5)/cols*.6,.42,f);
+    winL(g,x,y+d+.01,0,.25+i*(w-.5)/cols,start+r*gap,(w-.5)/cols*.6,.42,rnd()<lit?T.win:T.winOff);
+  }
+}
+function gable(g,x,y,z,w,d,rh){
+  if(MODE==="rec"){box(g,x+w/2-.08,y+d/2-.08,z,.16,.16,1.6,{r:T.pole,l:T.roofL,t:T.pole});const [sx,sy]=P(x+w/2,y+d/2,z+1.6);el("circle",{cx:sx,cy:sy,r:2.6,fill:T.accent,class:"blink"},g);return}
+  poly(g,[P(x,y,z),P(x+w,y,z),P(x+w,y+d/2,z+rh),P(x,y+d/2,z+rh)],T.roofL);
+  poly(g,[P(x+w,y,z),P(x+w,y+d,z),P(x+w,y+d/2,z+rh)],T.wallR);
+  poly(g,[P(x-.1,y+d+.1,z-.05),P(x+w+.1,y+d+.1,z-.05),P(x+w+.1,y+d/2,z+rh),P(x-.1,y+d/2,z+rh)],T.roof);
+}
+function tag(g,x,y,z,text){
+  const [sx,sy]=P(x,y,z);const t=el("g",{class:"tag"},g);
+  const w=text.length*6.9+16;el("rect",{x:sx-w/2,y:sy-26,width:w,height:20,rx:MODE==="town"?10:2},t);
+  el("text",{x:sx,y:sy-12,"text-anchor":"middle"},t).textContent=text;
+}
+function holo(x,y,z,text){
+  if(MODE!=="rec")return;const [sx,sy]=P(x,y,z);const g=el("g",{class:"holo"},R.holo);
+  const w=text.length*7.4+18;el("rect",{x:sx-w/2,y:sy-22,width:w,height:20},g);
+  el("line",{x1:sx,y1:sy-2,x2:sx,y2:sy+16,stroke:"#555555","stroke-width":1,"stroke-dasharray":"2 2"},g);
+  el("text",{x:sx,y:sy-8,"text-anchor":"middle"},g).textContent=text;
+}
+
+/* ---------- build ---------- */
+let R={},items=[],HOLES=[];
+const PATH=[[1.5,1.5],[12.5,1.5],[12.5,12.5],[1.5,12.5]],segLen=11,LOOP=44;
+function at(s){s=((s%LOOP)+LOOP)%LOOP;const i=Math.floor(s/segLen),f=(s%segLen)/segLen,a=PATH[i],b=PATH[(i+1)%4];return{x:a[0]+(b[0]-a[0])*f,y:a[1]+(b[1]-a[1])*f,dir:i}}
+function item(depth,id,label){const g=el("g",id?{class:"bld",tabindex:0,role:"button","aria-label":label,"data-id":id}:{});items.push({g,depth,id});return g}
+
+function build(){
+  rs=7;svg.innerHTML="";items=[];R={};
+  const hm=T.hm, H=(h,k=1)=>h*(1+(hm-1)*k);
+  const defs=el("defs",{},svg);
+  const f=el("filter",{id:"redtint"},defs);el("feColorMatrix",{type:"matrix",values:"0 0 0 0 .29  0 0 0 0 .08  0 0 0 0 .55  0 0 0 .9 0"},f);
+  const f2=el("filter",{id:"tealtint"},defs);el("feColorMatrix",{type:"matrix",values:"0 0 0 0 0  0 0 0 0 .3  0 0 0 0 .25  0 0 0 .9 0"},f2);
+  const f3=el("filter",{id:"cyantint"},defs);el("feColorMatrix",{type:"matrix",values:"0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"},f3);
+  const sky=el("g",{},svg);R.sky=sky;
+  let sun;
+  if(MODE==="rec"){const gd=el("linearGradient",{id:"neon",x1:0,y1:0,x2:0,y2:1},defs);
+    [["0","#FFFFFF"],[".45","#FFFFFF"],[".8","#F5F5F5"],["1","#E0E0E0"]].forEach(([o,c])=>el("stop",{offset:o,"stop-color":c},gd));
+}
+  if(MODE==="rec"){sun=el("g",{style:"cursor:pointer"},sky);const cx=830,cy=175;
+    el("circle",{cx,cy,r:128,fill:"none",stroke:"#262626","stroke-width":2,"stroke-dasharray":"2 10"},sun);
+    el("circle",{cx,cy,r:104,fill:"#EDEDED"},sun);el("circle",{cx,cy,r:86,fill:"#FFFFFF"},sun);
+    [72,60,50].forEach((r,i)=>el("circle",{cx,cy,r,fill:"none",stroke:"#555555","stroke-width":i?1:2,opacity:i?.45:.9,"stroke-dasharray":i===1?"4 6":"none"},sun));
+    R.pupil=el("circle",{cx,cy,r:24,fill:"#000000"},sun);el("circle",{cx:cx-8,cy:cy-9,r:6,fill:"#FFFFFF",opacity:.85},sun);
+    R.eyeScan=el("line",{x1:cx,y1:cy,x2:cx+86,y2:cy,stroke:"#555555","stroke-width":1.5,opacity:.7},sun);R.eye=[cx,cy];
+    el("text",{x:cx,y:cy-136,"text-anchor":"middle",fill:"#111111","font-size":10,"font-family":"IBM Plex Mono,monospace","letter-spacing":"2"},sun).textContent="PANOPTICON · WATCHING";}
+  else if(MODE==="fit"){sun=el("g",{style:"cursor:pointer"},sky);R.matrix=[];const mx=868,my=286,cs=13;
+    for(let i=0;i<7;i++)for(let j=0;j<7;j++)R.matrix.push(el("rect",{x:mx+j*cs,y:my+i*cs,width:cs-1,height:cs-1,fill:heatCol(Math.random())},sun));
+    el("text",{x:mx,y:my-6,fill:"#4A148C","font-size":9,"font-family":"IBM Plex Mono,monospace"},sun).textContent="layer_3 activations";}
+  else sun=el("circle",{cx:840,cy:150,r:T.sunR,fill:T.sun,style:"cursor:pointer"},sky);
+  R.sun=sun;
+  R.clouds=(MODE==="rec"?[]:[[120,420,1],[600,120,.8],[900,250,.7]]).map(([x,y,s])=>{const c=el("g",{fill:T.cloud},sky);
+    [[0,0,34],[30,-12,26],[58,2,22],[-26,6,20]].forEach(([dx,dy,r])=>el("circle",{cx:dx,cy:dy,r:r*s},c));c._x=x;c._y=y;return c});
+  if(MODE==="fit"){R.train=el("g",{},sky)}
+  // island
+  const base=el("g",{},svg);
+  poly(base,[P(14,0,0),P(14,14,0),P(14,14,-2.4),P(14,0,-2.4)],T.gR);
+  poly(base,[P(0,14,0),P(14,14,0),P(14,14,-2.4),P(0,14,-2.4)],T.gL);
+  poly(base,[P(14,0,-2.4),P(14,14,-2.4),P(7,7,-6)],T.u1);
+  poly(base,[P(0,14,-2.4),P(14,14,-2.4),P(7,7,-6)],T.u2);
+  poly(base,[P(0,0,0),P(14,0,0),P(14,14,0),P(0,14,0)],T.gT);
+  [[1,1,12,1],[1,12,12,1],[1,2,1,10],[12,2,1,10]].forEach(([x,y,w,d])=>poly(base,[P(x,y,0),P(x+w,y,0),P(x+w,y+d,0),P(x,y+d,0)],T.road));
+  el("polyline",{points:pts([P(1.5,1.5,0),P(12.5,1.5,0),P(12.5,12.5,0),P(1.5,12.5,0),P(1.5,1.5,0)]),fill:"none",stroke:T.line,"stroke-width":1.6,"stroke-dasharray":MODE==="rec"?"14 4":"7 9"},base);
+  poly(base,[P(2,2,0),P(12,2,0),P(12,12,0),P(2,12,0)],T.inner);
+  if(MODE==="rec"){for(let i=2;i<=12;i++){el("polyline",{points:pts([P(i,2,0),P(i,12,0)]),stroke:"#555555","stroke-width":.6,opacity:.18,fill:"none"},base);el("polyline",{points:pts([P(2,i,0),P(12,i,0)]),stroke:"#555555","stroke-width":.6,opacity:.18,fill:"none"},base)}
+    R.scan=el("polygon",{fill:"#555555",opacity:.16},base)}
+  if(MODE==="town"){ // little park paths
+    el("polyline",{points:pts([P(5.2,2,0),P(5.2,12,0)]),stroke:"#E8D9B5","stroke-width":3,fill:"none"},base);
+    el("polyline",{points:pts([P(2,8.85,0),P(12,8.85,0)]),stroke:"#E8D9B5","stroke-width":3,fill:"none"},base);}
+  HOLES=[6,17.5,27,38.5].map(s=>{const p=at(s);const [sx,sy]=P(p.x+(p.dir%2?.18:0),p.y+(p.dir%2?0:.18),0);el("ellipse",{cx:sx,cy:sy,rx:7,ry:3.4,fill:MODE==="fit"?"#004D40":MODE==="rec"?"#000000":"#140808",opacity:MODE==="rec"?.7:1},base);return{s,sx,sy}});
+
+  const world=el("g",{id:"world"},svg);R.world=world;
+  R.holo=null;
+
+  // CMU
+  {heat("cmu");const g=item(6.6,"cmu","CMU xulab tower");const x=2.4,y=2.4,w=2.1,d=2.1,h=H(7.4,.85);
+   box(g,x,y,0,w,d,h);windows(g,x,y,w,d,h,{rows:6,cols:3,start:.6,gap:.95});
+   box(g,x+.6,y+.6,h,.9,.9,.6,{t:T.roofL});box(g,x+.98,y+.98,h+.6,.12,.12,MODE==="rec"?3.4:1.6,{r:T.pole,l:T.roofL,t:T.pole});
+   if(MODE==="rec"){const [sx,sy]=P(x+1.04,y+1.04,h+4);el("circle",{cx:sx,cy:sy,r:3,fill:T.accent,class:"blink"},g)}
+   g._ens=[0,1,2].map(i=>winR(g,x+w+.01,y,0,.25+i*.6,h-.95,.42,.7,T.win));R.cmu=g;R.cmuTop=h;
+   tag(g,x+w/2,y+d/2,h+(MODE==="rec"?4.6:2.4),MODE==="fit"?INFO.cmu.fl:"CMU xulab");}
+  // Bio
+  {heat("bio");const g=item(10.4,"bio","BioSemantic Bridge lab");const x=5.9,y=2.5,w=2.2,d=2,h=H(2.6);
+   box(g,x,y,0,w,d,h);windows(g,x,y,w,d,h,{rows:2,cols:3,gap:1});
+   g._helix=el("g",{},g);g._hc=[x+w/2,y+d/2,h];R.bio=g;
+   tag(g,x+w/2,y+d/2,h+2.6,MODE==="fit"?INFO.bio.fl:"BioSemantic Bridge");}
+  // RecoVR
+  {heat("recovr");const g=item(14,"recovr","RecoVR clinic");const x=9.5,y=2.6,w=2.1,d=2,h=H(2.1);
+   box(g,x,y,0,w,d,h);windows(g,x,y,w,d,h,{rows:1,cols:3,start:.7});
+   winL(g,x,y+d+.01,0,.8,0,.5,.8,T.door);
+   box(g,x+.4,y+.75,h+.15,1.3,.5,.62,{r:T.roofL,l:T.door,t:T.roof});
+   box(g,x+.95,y+.85,h,.2,.3,.15,{r:T.roofL,l:T.door,t:T.roof});
+   [.12,.72].forEach(u=>winL(g,x+.4,y+1.26,h+.15,u,.14,.42,.34,T.teal));
+   tag(g,x+w/2,y+d/2,h+1.3,MODE==="fit"?INFO.recovr.fl:"RecoVR");}
+  // Telvue
+  {heat("telvue");const g=item(10.5,"telvue","Telvue broadcast building");const x=2.5,y=6,w=2,d=2,h=H(4);
+   box(g,x,y,0,w,d,h);windows(g,x,y,w,d,h,{rows:3,cols:3,gap:1.05});
+   box(g,x+.9,y+.9,h,.15,.15,2.2,{r:T.pole,l:T.roofL,t:T.pole});
+   const [sx,sy]=P(x+.97,y+.97,h+2.2);["","b","c"].forEach(k=>el("ellipse",{cx:sx,cy:sy,rx:16,ry:9,class:"wave "+k,stroke:T.data||T.accent},g));
+   el("circle",{cx:sx,cy:sy,r:3.5,fill:T.accent},g);tag(g,x+w/2,y+d/2,h+3.2,MODE==="fit"?INFO.telvue.fl:"Telvue");R.telTop=h;}
+  // Ather
+  {heat("ather");const g=item(14.2,"ather","Ather Energy depot");const x=5.7,y=5.8,w=2.8,d=2.6,h=H(1.7,.6);
+   box(g,x,y,0,w,d,h,{t:MODE==="town"?"#A93226":T.roof});
+   [0,1,2].forEach(i=>winL(g,x,y+d+.01,0,.25+i*.88,0,.7,1.15,T.door));
+   [0,1,2].forEach(i=>winL(g,x,y+d+.01,0,.3+i*.88,.95,.6,.12,T.win));
+   if(MODE==="rec")windows(g,x,y,w,d,h,{start:1.6,gap:.7}); else winR(g,x+w+.01,y,0,.3,.6,2,.5,T.win);
+   for(let i=0;i<3;i++)for(let j=0;j<2;j++){const px=x+.3+i*.8,py=y+.35+j*1.05;poly(g,[P(px,py,h+.01),P(px+.65,py,h+.01),P(px+.65,py+.85,h+.01),P(px,py+.85,h+.01)],MODE==="fit"?"#4A148C":MODE==="rec"?"#FFFFFF":"#2F3E66",{stroke:MODE==="rec"?"#55555588":"#9DB0D8","stroke-width":.6})}
+   box(g,x+w+.2,y+d-.5,0,.55,.22,.28,{r:T.scoot[0],l:T.scoot[1],t:T.scoot[2]});
+   tag(g,x+w/2,y+d/2,h+.9,MODE==="fit"?INFO.ather.fl:"Ather Energy");R.atherTop=h;}
+  // Daily OS
+  {heat("daily");const g=item(17.6,"daily","Daily OS house");const x=9.5,y=6.1,w=2,d=1.8,h=H(1.6,.7);
+   box(g,x,y,0,w,d,h,{t:T.wallR});windows(g,x,y,w,d,h,{rows:1,cols:2,start:.55,lit:1});
+   gable(g,x,y,h,w,d,1.1);
+   const [sx,sy]=P(x+w/2,y+d/2,h+2.8);el("circle",{cx:sx,cy:sy,r:15,fill:"none",stroke:T.ringBg,"stroke-width":5},g);
+   g._ring=el("circle",{cx:sx,cy:sy,r:15,fill:"none",stroke:T.ring,"stroke-width":5,"stroke-linecap":"round","stroke-dasharray":"94.2","stroke-dashoffset":"30",transform:`rotate(-90 ${sx} ${sy})`},g);R.daily=g;
+   tag(g,x+w/2,y+d/2,h+4.4,MODE==="fit"?INFO.daily.fl:"Daily OS");}
+  // Socratic
+  {heat("socratic");const g=item(13.8,"socratic","Socratic tutor schoolhouse");const x=2.5,y=9.5,w=2.2,d=1.8,h=H(1.7,.7);
+   box(g,x,y,0,w,d,h);windows(g,x,y,w,d,h,{rows:1,cols:3,start:.6,lit:1});
+   gable(g,x,y,h,w,d,1);
+   box(g,x+w-.25,y+.2,h,.08,.08,2.3,{r:T.pole,l:T.roofL,t:T.pole});
+   const [fx,fy]=P(x+w-.21,y+.24,h+2.25);
+   el("path",{d:`M${fx},${fy} l26,-6 l0,22 l-26,6z`,fill:T.accent},g);
+   el("text",{x:fx+12,y:fy+12,"text-anchor":"middle",fill:"#FFF6E6","font-family":"Rubik,sans-serif","font-weight":900,"font-size":15},g).textContent="?";
+   tag(g,x+w/2,y+d/2,h+3.4,MODE==="fit"?INFO.socratic.fl:"Socratic Tutor");}
+  // YouJam
+  {heat("youjam");const g=item(17.5,"youjam","YouJam building");const x=6,y=9.6,w=2.1,d=1.9,h=H(1.6,.8);
+   box(g,x,y,0,w,d,h);windows(g,x,y,w,d,h,{rows:1,cols:3,start:.55});
+   g._bars=[];
+   [[x+.15,y+d-.25],[x+1.15,y+d-.25]].forEach(([bx,by])=>{
+     box(g,bx+.35,by-.1,h,.08,.08,.5,{r:T.pole,l:T.roofL,t:T.pole});
+     poly(g,[P(bx,by,h+.5),P(bx+.85,by,h+.5),P(bx+.85,by,h+1.25),P(bx,by,h+1.25)],T.screen);
+     const [sx,sy]=P(bx+.12,by,h+.6);const bars=[];
+     for(let i=0;i<4;i++)bars.push(el("rect",{x:sx+i*5.6,y:sy-12,width:3.6,height:12,fill:i%2?T.accent:(MODE==="fit"?"#fff":MODE==="rec"?"#9E9E9E":"#FFD36B")},g));
+     g._bars.push({bars,sy});});
+   R.yj=g;tag(g,x+w/2,y+d/2,h+2.4,MODE==="fit"?INFO.youjam.fl:"YouJam");}
+  // Zippy
+  {heat("zippy");const g=item(20.8,"zippy","Zippy robot plinth");const x=9.7,y=9.7,w=1.6,d=1.6,h=.55;
+   box(g,x,y,0,w,d,h,{t:MODE==="town"?"#F3D9C6":T.inner});
+   g._bot=el("g",{},g);g._bp=[x+.6,y+.8,h];R.zp=g;
+   const [sx,sy]=P(x+w,y+.25,.25);el("text",{x:sx-4,y:sy+4,fill:MODE==="rec"?"#555555":MODE==="fit"?"#4A148C":"#3A1410","font-size":7,"font-family":"IBM Plex Mono,monospace",transform:`rotate(26 ${sx} ${sy})`},g).textContent="actual size";
+   tag(g,x+w/2,y+d/2,h+1.6,MODE==="fit"?INFO.zippy.fl:"Zippy");}
+  // Writing
+  {heat("writing");const g=item(20.5,"writing","Writing newsstand");const x=13.15,y=6.2,w=.7,d=1.1,h=.95;
+   box(g,x,y,0,w,d,h,{t:T.accent});
+   [0,1,2].forEach(i=>winR(g,x+w+.01,y,0,.12+i*.32,.35,.22,.42,[T.win,T.teal,T.accent][i]));
+   tag(g,x+w/2,y+d/2,h+1.2,MODE==="fit"?INFO.writing.fl:"Writing");}
+
+  if(MODE==="fit"){T.wallR="#FFFFFF";T.wallL="#D1C4E9"}
+  // border: trees (town/fit) or megastructures (rec)
+  const back=[[.15,2.5],[.2,4.4],[.15,7.6],[.25,10.4],[2.8,.15],[5.2,.2],[8.6,.15],[10.9,.2],[.2,.2]];
+  const front=[[13.25,2.3],[13.3,4.2],[13.2,9.4],[13.3,11.8],[3.6,13.3],[7.9,13.25],[10.6,13.3],[.3,13.2],[13.2,13.2],[12.6,.2],[.25,12]];
+  if(MODE==="rec"){
+    back.forEach(([x,y],i)=>{const g=item(x+y+.4);const h=5+rnd()*9;box(g,x,y,0,.85,.85,h);
+      for(let z=.6;z<h-.3;z+=.7){winR(g,x+.86,y,0,.12,z,.6,.12,rnd()<.6?T.win:T.winOff);winL(g,x,y+.86,0,.12,z,.6,.12,rnd()<.5?T.win:T.winOff)}
+      const [sx,sy]=P(x+.42,y+.42,h);el("circle",{cx:sx,cy:sy-2,r:2.4,fill:T.accent,class:"blink d"+(1+i%3)},g);
+      if(i%2===0)el("line",{x1:sx,y1:sy-4,x2:sx,y2:Math.max(0,sy-120),class:"stream"},g)});
+    front.forEach(([x,y],i)=>{const g=item(x+y+.3);box(g,x+.15,y+.15,0,.5,.5,.5+rnd()*.6,{t:"#E6E6E6"});
+      box(g,x+.36,y+.36,.9,.08,.08,1.2,{r:T.pole,l:T.roofL,t:T.pole});const [sx,sy]=P(x+.4,y+.4,2.1);el("circle",{cx:sx,cy:sy,r:2,fill:T.accent,class:"blink d"+(1+i%3)},g)});
+  } else {
+    [...back,...front].forEach(([x,y],i)=>{const s=.85+((i*7)%4)/10;const g=item(x+y+.3,null);
+      box(g,x+.22,y+.22,0,.16,.16,.45,{r:T.trunk,l:T.trunk,t:T.trunk});
+      box(g,x,y,.45,.62*s,.62*s,.55*s,{r:T.tree[0],l:T.tree[1],t:T.tree[2]});
+      box(g,x+.1*s,y+.1*s,.45+.55*s,.42*s,.42*s,.38*s,{r:T.tree[0],l:T.tree[1],t:T.tree[2]});
+      if(MODE==="fit"&&i%2===0)g._fl=["broccoli 0.97","tree 0.51","cat 0.12"][(i/2)%3];});
+    if(MODE==="town")[[3.3,4.9],[8.6,4.7],[4.9,8.6],[8.7,8.9],[11.5,8.4]].forEach(([x,y],i)=>{const g=item(x+y+.2);const s=.6;
+      box(g,x+.15,y+.15,0,.1,.1,.3,{r:T.trunk,l:T.trunk,t:T.trunk});box(g,x,y,.3,.4,.4,.42,{r:T.tree[0],l:T.tree[1],t:T.tree[2]})});
+  }
+
+  // scooter
+  R.scooter=el("g",{class:"bld",tabindex:0,role:"button","aria-label":"Pothole detection scooter","data-id":"pothole"});
+  R.scoot={g:R.scooter,depth:0};items.push(R.scoot);
+  placeItems();
+
+  R.holo=el("g",{},svg);
+  if(MODE==="rec"){
+    holo(3.45,3.45,R.cmuTop+5.6,"+25% ACC");holo(7.1,7.1,R.atherTop+2,"50K DAU");holo(3.5,7,R.telTop+4.2,"+40% ENG");
+    holo(10.55,3.6,H(2.1)+2.4,"FOUNDER");holo(7,3.5,H(2.6)+3,"205 QS");
+    R.drones=[0,1,2,3].map(i=>el("circle",{r:2.6,fill:"#000000"},R.holo));
+    [[4.5,4.5,R.cmuTop*.55,1.6,1.6],[8.5,8.4,R.atherTop,1.4,1.4],[11.6,4.6,H(2.1),1.2,1.6],[4.5,8,R.telTop*.8,1.6,1.2]].forEach(([x,y,z,dx,dy],i)=>{
+      const [cx,cy]=P(x,y,z);const a=P(x+dx-.9,y+dy+.9,0),b=P(x+dx+.9,y+dy-.9,0);
+      el("polygon",{points:pts([[cx,cy],a,b]),fill:"#000000",opacity:.1},R.holo);
+      el("rect",{x:cx-4,y:cy-3,width:8,height:5,fill:"#111111"},R.holo);el("circle",{cx:cx+2,cy:cy-.5,r:1.8,fill:"#000000",class:"blink d"+(1+i%3)},R.holo)});
+    [[3.45,3.45,R.cmuTop+.6],[7,3.5,H(2.6)],[3.5,7,R.telTop+2.2]].forEach(([x,y,z])=>{const [sx,sy]=P(x,y,z);el("line",{x1:sx,y1:sy,x2:sx,y2:0,class:"stream"},R.holo)});
+    R.fr=el("g",{class:"fr"},R.holo);
+    ["M-22,-8 v-8 h8","M22,-8 v-8 h-8","M-22,8 v8 h8","M22,8 v8 h-8"].forEach(d=>el("path",{d},R.fr));
+    el("text",{x:-22,y:-21},R.fr).textContent="ID MATCH · SNEHA_01 · 98.7%";
+    R.rghost=el("use",{href:"#world",x:4,y:0,filter:"url(#cyantint)",opacity:0,class:"ghosts"});svg.insertBefore(R.rghost,R.world);
+  }
+  R.pings=el("g",{},svg);
+  if(MODE==="fit")decorateFit();
+  if(cur)document.querySelectorAll(".bld").forEach(b=>b.classList.toggle("sel",b.dataset.id===cur));
+}
+function placeItems(){items.sort((a,b)=>a.depth-b.depth);items.forEach(i=>R.world.appendChild(i.g))}
+
+function decorateFit(){
+  // ghost chromatic copies of the world
+  const gh=el("g",{class:"ghosts"},svg);svg.insertBefore(gh,R.world);
+  el("use",{href:"#world",x:7,y:-2,filter:"url(#redtint)",opacity:.55},gh);
+  el("use",{href:"#world",x:-5,y:2,filter:"url(#tealtint)",opacity:.3},gh);
+  // memorized training set
+  for(let i=0;i<4;i++){const gx=545+i*112,gy=14;
+    const u=el("g",{transform:`translate(${gx},${gy}) scale(.115)`},R.train);el("use",{href:"#world",x:-140,y:-120},u);
+    el("rect",{x:gx-4,y:gy-4,width:104,height:84,fill:"none",stroke:"#4A148C","stroke-width":1},R.train);
+    el("text",{x:gx,y:gy+96,"font-size":9,"font-family":"IBM Plex Mono,monospace",fill:"#4A148C"},R.train).textContent=`train_${String(i+1).padStart(4,"0")}.png ✓`;}
+  // bounding boxes
+  const ov=el("g",{},svg);R.bbox=ov;
+  items.forEach(it=>{if(!it.id&&!it.g._fl)return;if(it===R.scoot)return;
+    const tg=it.g.querySelector(".tag");if(tg)tg.style.display="none";
+    const b=it.g.getBBox();if(tg)tg.style.display="";
+    if(it.id){el("rect",{x:b.x-3,y:b.y-3,width:b.width+6,height:b.height+6,class:"bbox"},ov);}
+    else{el("rect",{x:b.x-2,y:b.y-2,width:b.width+4,height:b.height+4,class:"bbox"},ov);
+      const w=it.g._fl.length*5.9+8;el("rect",{x:b.x-2,y:b.y-14,width:w,height:12,fill:"#4A148C"},ov);
+      el("text",{x:b.x+2,y:b.y-5,class:"blabel"},ov).textContent=it.g._fl;}
+  });
+}
+
+/* ---------- intro, hud, card ---------- */
+const INTRO={
+ town:`<h1>Sneha Hassan</h1><p>Software &amp; AI engineer. I build systems that learn, and I have shipped them to scooters, phones and research labs. This is my town: every building is something I made. Click around.</p>
+  <div class="links"><a class="pill dark" href="mailto:snehahassan7920@gmail.com">Say hi</a><a class="pill" href="https://github.com/snehassan">GitHub</a><a class="pill" href="https://medium.com/@snehassan123">Medium</a></div>`,
+ rec:`<h1>Sneha Hassan</h1><p>Software &amp; AI Engineer. About 3 years shipping ML and full-stack systems to production at Ather Energy, Telvue and CMU. MS, Carnegie Mellon.</p>
+  <p class="open">Open to SWE · AI Engineer · FDE · DevRel · Solutions · SF · NYC · Boston · Seattle · London · remote</p>
+  <div class="links"><a class="pill dark" href="/resume">Resume</a><a class="pill" href="https://linkedin.com/in/sneha-hassan">LinkedIn</a><a class="pill" href="https://github.com/snehassan">GitHub</a><a class="pill" href="#plain">Plain text</a></div>`,
+ fit:`<h1 class="glitch">Sneha Hassan Sneha Hassan<br>Sneha Hassan Sneha Hassan</h1><p>You found the overfit build. This model memorized one town perfectly and now sees it everywhere, including in the trees. Training accuracy is 100%. Please do not show it new data.</p>
+  <div class="links"><button class="pill dark" data-go-mode="town">Regularize (dropout 0.5)</button></div>`
+};
+const HUD={
+ town:()=>`<span>Scooter 01</span><span>Potholes flagged <b id="pc">${pad(flagged)}</b></span><span>Ensemble <b id="ev">3/3</b></span>`,
+ rec:()=>`<span>Panopticon v4</span><span>Subject <b>S. Hassan</b></span><span>Status <b>available</b></span><span>Road anomalies <b id="pc">${pad(flagged)}</b></span><span>Ensemble <b id="ev">3/3</b></span>`,
+ fit:()=>`<span>Epoch <b id="ep">9999</b></span><span>Train loss <b>0.0000</b></span><span>Val loss <b id="vl">4.20</b> ↑</span><span>Pothole recall <b id="pc">${pad(flagged)}</b></span>`
+};
+const pad=n=>String(n).padStart(3,"0");
+const card=document.getElementById("card");
+let cur=null;
+const LOSS=`<svg class="loss" style="aspect-ratio:300/130" viewBox="0 0 300 130" aria-label="Loss curves: training loss falls toward zero while validation loss rises after the best epoch">
+ <defs><linearGradient id="tl" x1="0" x2="1"><stop offset="0" stop-color="#004D40"/><stop offset="1" stop-color="#E0F2F1"/></linearGradient>
+ <linearGradient id="ta" x1="0" x2="1"><stop offset="0" stop-color="#004D40" stop-opacity=".55"/><stop offset="1" stop-color="#E0F2F1" stop-opacity=".9"/></linearGradient></defs>
+ <polygon fill="url(#ta)" points="30,20 60,48 90,66 130,80 170,89 210,94 250,97 290,99 290,100 30,100"/>
+ <line x1="30" y1="10" x2="30" y2="100" stroke="#1A0B3A"/><line x1="30" y1="100" x2="290" y2="100" stroke="#1A0B3A"/>
+ <polyline fill="none" stroke="url(#tl)" stroke-width="3" points="30,20 60,48 90,66 130,80 170,89 210,94 250,97 290,99"/>
+ <polyline fill="none" stroke="#4A148C" stroke-width="2.5" points="30,24 60,50 90,62 120,66 150,63 180,55 220,40 260,26 290,14"/>
+ <line x1="122" y1="10" x2="122" y2="100" stroke="#4A148C" stroke-dasharray="3 3"/>
+ <text x="126" y="20" font-size="9" font-family="IBM Plex Mono" fill="#4A148C">should have stopped here</text>
+ <text x="40" y="116" font-size="9" font-family="IBM Plex Mono" fill="#004D40">train loss (epoch 0 → 9999)</text><text x="252" y="34" font-size="9" font-family="IBM Plex Mono" fill="#4A148C">val</text></svg>`;
+const NET=()=>{const L=[4,6,6,3],xs=[30,110,190,270];let o="";const pos=L.map((n,i)=>Array.from({length:n},(_,j)=>[xs[i],15+(j+.5)*(90/n)]));
+  for(let i=0;i<3;i++)pos[i].forEach(a=>pos[i+1].forEach(b=>{o+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${heatCol(Math.random())}" stroke-width="${(.4+Math.random()*1.6).toFixed(1)}"/>`}));
+  pos.flat().forEach(([x,y])=>{o+=`<circle cx="${x}" cy="${y}" r="6" fill="${heatCol(Math.random())}" stroke="#1A0B3A" stroke-width=".8"/>`});
+  return `<svg class="loss" style="aspect-ratio:300/115" viewBox="0 0 300 115" aria-label="Network with neurons colored by activation weight">${o}</svg><div><div class="legend"></div><div class="lg"><span>activation 0</span><span>feature weight</span><span>1</span></div></div>`};
+function welcome(){
+  cur=null;document.querySelectorAll(".bld.sel").forEach(b=>b.classList.remove("sel"));
+  const dir=`<div class="dir">${ORDER.map((k,i)=>`<button data-go="${k}">${MODE==="rec"?"F"+String(i+1).padStart(2,"0")+" · ":""}${INFO[k].n}</button>`).join("")}</div>`;
+  if(MODE==="town") card.innerHTML=`<div class="kick">Welcome to Sneha Town · pop. 1 engineer</div><h2>Every building here is something I built.</h2>
+   <p class="flavor">Click one to read its story. The red scooter is a project too, and it is out looking for potholes right now.</p>${dir}
+   <div class="more"><span class="kick">or press → to tour</span><a class="pill dark" href="#plain">Plain text</a></div>`;
+  if(MODE==="rec") card.innerHTML=`<div class="kick alert">● Subject file · status: open to work</div><h2>Software &amp; AI Engineer</h2>
+   <p style="font-size:12.5px;opacity:.8">Every tower in this city is one of the files above. Select one to inspect it.</p>
+   <dl class="kv"><dt>Roles</dt><dd>SWE, AI Engineer, FDE, DevRel, Solutions</dd><dt>Stack</dt><dd>Python, TypeScript, Java, React, Spring Boot, Rails, Firebase, LLM fine-tuning and evals</dd><dt>Location</dt><dd>United States · open to SF, NYC, Boston, Seattle, London · remote</dd><dt>Contact</dt><dd>snehahassan7920@gmail.com</dd></dl>
+   ${dir}<div class="more"><span class="kick">→ next file</span><a class="pill dark" href="/resume">Resume</a></div>`;
+  if(MODE==="fit") card.innerHTML=`<div class="kick glitch">model: sneha-town-overfit · params: all of them</div><h2 class="glitch">Every building here is something I built. Every building here is</h2>
+   ${LOSS}${NET()}<p class="flavor">Train accuracy 100%. Validation accuracy 12%. The model is extremely confident about everything it has seen once, and calls every tree broccoli.</p>
+   <p style="font-size:12px">Real ML is knowing where the dashed line goes. My research at CMU is ensembles and evals that catch this before it ships.</p>${dir}
+   <div class="more"><button class="pill dark" data-go-mode="town">Regularize</button></div>`;
+  wire();
+}
+function show(id){
+  cur=id;const c=INFO[id],i=ORDER.indexOf(id);
+  document.querySelectorAll(".bld").forEach(b=>b.classList.toggle("sel",b.dataset.id===id));
+  const link=c.u?`<a class="pill dark" href="${c.u}" target="_blank" rel="noopener">${id==="writing"?"Read on Medium":"View code"} ↗</a>`:"";
+  const nav=`<div class="nav"><button aria-label="Previous" data-s="-1">←</button><button aria-label="Next" data-s="1">→</button><button aria-label="Back to overview" data-s="0">⌂</button></div>`;
+  const chips=`<div class="chips">${c.t.map(x=>`<span class="chip">${x}</span>`).join("")}</div>`;
+  if(MODE==="town") card.innerHTML=`<div class="kick">${c.k}</div><h2>${c.n}</h2><p class="flavor">${c.f}</p><ul>${c.b.map(x=>`<li>${x}</li>`).join("")}</ul>${chips}<div class="more">${nav}${link}</div>`;
+  if(MODE==="rec") card.innerHTML=`<div class="kick">File ${String(i+1).padStart(2,"0")} / ${ORDER.length} · ${c.k}</div><h2>${c.n}</h2><div class="impact">${c.m}</div><ul>${c.b.map(x=>`<li>${x}</li>`).join("")}</ul>${chips}<div class="more">${nav}${link}</div>`;
+  if(MODE==="fit"){const conf=()=>(.97+Math.random()*.0299).toFixed(4);
+    card.innerHTML=`<div class="kick glitch">predicted class: ${c.fl}</div><h2 class="glitch">${c.n} ${c.n.split(" ")[0]}</h2><p class="flavor">${c.f} ${c.f}</p>
+     <ul>${c.b.map(x=>`<li><span class="conf">p=${conf()}</span>${x}</li>`).join("")}<li><span class="conf">p=1.0000</span>${c.b[0]}</li></ul>${chips}<div class="more">${nav}${link}</div>`;}
+  wire();
+  if(isMob()&&show._user)card.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+}
+function wire(){
+  card.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{show._user=1;show(b.dataset.go)});
+  card.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>step(+b.dataset.s));
+  document.querySelectorAll("[data-go-mode]").forEach(b=>b.onclick=()=>setMode(b.dataset.goMode));
+}
+function step(s){if(!s){welcome();return}const i=cur?ORDER.indexOf(cur):-1;show(ORDER[(i+s+ORDER.length)%ORDER.length])}
+svg.addEventListener("click",e=>{if(R.sun&&R.sun.contains(e.target)){sunClicks();return}const b=e.target.closest(".bld");if(b){show._user=1;show(b.dataset.id)}});
+svg.addEventListener("keydown",e=>{const b=e.target.closest(".bld");if(b&&(e.key==="Enter"||e.key===" ")){e.preventDefault();show._user=1;show(b.dataset.id)}});
+let typed="";
+addEventListener("keydown",e=>{
+  typed=(typed+e.key).slice(-7).toLowerCase();if(typed==="overfit"){setMode("fit");return}
+  if(e.target.closest&&e.target.closest("a,button,.bld"))return;
+  if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});
+let sc=0,st=0;function sunClicks(){const n=Date.now();sc=n-st<900?sc+1:1;st=n;if(sc>=3&&MODE!=="fit")setMode("fit")}
+
+function setMode(m,fromHash){
+  MODE=m;T=THEMES[m];document.documentElement.dataset.mode=m;
+  document.querySelectorAll(".modes button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));
+  document.getElementById("introBody").innerHTML=INTRO[m];
+  document.getElementById("hud").innerHTML=HUD[m]();
+  document.title="Sneha Hassan · "+(m==="rec"?"Panopticon City":m==="fit"?"Sneha Town (overfit)":"Sneha Town");
+  build(); cur?show(cur):welcome(); wire();
+  const want={town:"visitor",rec:"recruiter",fit:"overfit"}[m];
+  if(!fromHash){try{history.replaceState(null,"","#"+want)}catch(e){}}
+  if(m==="rec"&&!fromHash)scrollTo({top:0,behavior:"auto"});
+  if(m==="fit")startGlitch();else if(m==="rec")startSoft();else stopGlitch();
+}
+document.querySelectorAll(".modes button").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+
+/* ---------- animation ---------- */
+let flagged=0,last=0,s=0,gl=null;
+function startGlitch(){stopGlitch();if(reduce)return;gl=setInterval(()=>{
+  const cand=items.filter(i=>i.id&&i!==R.scoot);const it=cand[Math.floor(Math.random()*cand.length)];
+  it.g.style.transform=`translate(${(Math.random()*16-8).toFixed(1)}px,${(Math.random()*4-2).toFixed(1)}px)`;setTimeout(()=>it.g.style.transform="",110);
+  if(Math.random()<.25){R.world.style.transform=`skewX(${(Math.random()*4-2).toFixed(1)}deg)`;setTimeout(()=>R.world.style.transform="",90)}
+  const ep=document.getElementById("ep"),vl=document.getElementById("vl");if(ep){ep.textContent=+ep.textContent+1;vl.textContent=(parseFloat(vl.textContent)+.01).toFixed(2)}
+},260)}
+function stopGlitch(){if(gl)clearInterval(gl);gl=null}
+function startSoft(){stopGlitch();if(reduce)return;gl=setInterval(()=>{if(Math.random()<.55)return;
+  const dx=(Math.random()*6-3).toFixed(1);R.world.style.transform=`translateX(${dx}px)`;if(R.rghost)R.rghost.setAttribute("opacity",.45);
+  setTimeout(()=>{R.world.style.transform="";if(R.rghost)R.rghost.setAttribute("opacity",0)},90+Math.random()*60)},1400)}
+function drawScooter(p){
+  const g=R.scooter;g.innerHTML="";const along=p.dir%2===0;const w=along?.9:.38,d=along?.38:.9;
+  const x=p.x-w/2+(along?0:.18),y=p.y-d/2+(along?.18:0),z=MODE==="rec"?.5:.06;
+  if(MODE==="rec"){const [sx,sy]=P(p.x+(along?0:.18),p.y+(along?.18:0),0);el("ellipse",{cx:sx,cy:sy,rx:12,ry:5,fill:"#555555",opacity:.3},g)}
+  box(g,x,y,z,w,d,.28,{r:T.scoot[0],l:T.scoot[1],t:T.scoot[2]});
+  box(g,x+w*.3,y+d*.3,z+.28,w*.4,d*.4,.5,{r:T.wallR,l:T.wallL,t:MODE==="fit"?"#1A0B3A":T.door});
+  R.scoot.depth=x+y+(w+d)/2;
+}
+function frame(t){
+  const dt=Math.min(.05,(t-last)/1000||0);last=t;
+  const prev=s;s=(s+dt*(MODE==="rec"?2.8:1.9))%LOOP;const p=at(s);drawScooter(p);
+  HOLES.forEach(h=>{if((prev<h.s&&s>=h.s)||(prev>s&&(h.s>prev||h.s<=s))){flagged++;const pc=document.getElementById("pc");if(pc)pc.textContent=pad(flagged);
+    const r=el("circle",{cx:h.sx,cy:h.sy,r:14,class:"ping",stroke:T.ping,style:`transform-origin:${h.sx}px ${h.sy}px`},R.pings);setTimeout(()=>r.remove(),950)}});
+  const idx=items.indexOf(R.scoot);const want=items.filter(i=>i!==R.scoot&&i.depth<R.scoot.depth).length;if(idx!==want)placeItems();
+  R.clouds.forEach((c,i)=>{const x=((c._x+t*.006*(i+1))%1100)-100;c.setAttribute("transform",`translate(${x},${c._y})`)});
+  const bio=R.bio,[hx,hy,hz]=bio._hc;bio._helix.innerHTML="";
+  for(let i=0;i<14;i++){const a=i*.62+t/600;for(const o of [0,Math.PI]){const [sx,sy]=P(hx+Math.cos(a+o)*.32,hy+Math.sin(a+o)*.32,hz+.15+i*.13);
+    el("circle",{cx:sx,cy:sy,r:2.3,fill:o?(MODE==="rec"?"#555555":MODE==="fit"?"#4A148C":T.accent):(MODE==="fit"?"#00796B":MODE==="rec"?"#000000":"#FFC24B")},bio._helix)}}
+  R.daily._ring.setAttribute("stroke-dashoffset",(94.2*(1-(.55+.3*Math.sin(t/1800)))).toFixed(1));
+  R.yj._bars.forEach(({bars,sy})=>bars.forEach((r,i)=>{const hgt=4+Math.abs(Math.sin(t/180+i*1.3))*12;r.setAttribute("y",sy-hgt);r.setAttribute("height",hgt)}));
+  const zp=R.zp,[bx,by,bz]=zp._bp;const wx=bx+Math.sin(t/1400)*.35;const stp=Math.sin(t/120)>0;zp._bot.innerHTML="";
+  const ink=MODE==="rec"?"#555555":MODE==="fit"?"#1A0B3A":"#2A0E0B";
+  box(zp._bot,wx,by,bz+(stp?.06:0),.05,.05,.12,{r:ink,l:ink,t:ink});box(zp._bot,wx+.1,by,bz+(stp?0:.06),.05,.05,.12,{r:ink,l:ink,t:ink});
+  box(zp._bot,wx-.02,by-.02,bz+.12,.2,.1,.14,{r:T.scoot[0],l:T.scoot[1],t:T.scoot[2]});box(zp._bot,wx+.03,by,bz+.26,.1,.07,.08,{r:T.wallR,l:T.wallL,t:T.wallR});
+  if(R.eyeScan){const [cx,cy]=R.eye,a=t/900;R.eyeScan.setAttribute("x2",cx+Math.cos(a)*86);R.eyeScan.setAttribute("y2",cy+Math.sin(a)*86);
+    const [px,py]=P(p.x,p.y,0);const dx=(px-cx)/900,dy=(py-cy)/900;R.pupil.setAttribute("cx",cx+dx*30);R.pupil.setAttribute("cy",cy+dy*30)}
+  if(R.scan){const b=2+((t/400)%10);R.scan.setAttribute("points",pts([P(b,2,0),P(b+.5,2,0),P(b+.5,12,0),P(b,12,0)]))}
+  if(R.fr){const [fx,fy]=P(p.x,p.y,.6);R.fr.setAttribute("transform",`translate(${fx.toFixed(1)},${fy.toFixed(1)})`)}
+  if(R.matrix&&Math.random()<.08)R.matrix[Math.floor(Math.random()*R.matrix.length)].setAttribute("fill",heatCol(Math.random()));
+  if(R.drones)R.drones.forEach((d,i)=>{const a=t/(1400+i*500)+i*2.1;const [sx,sy]=P(7+Math.cos(a)*(4+i),7+Math.sin(a)*(4+i),11+i*2.5);d.setAttribute("cx",sx);d.setAttribute("cy",sy)});
+  if(!reduce)requestAnimationFrame(frame);
+}
+setInterval(()=>{if(!R.cmu)return;const cols=[T.win,T.accent];const v=R.cmu._ens.map(()=>cols[0]);if(Math.random()<.4)v[Math.floor(Math.random()*3)]=cols[1];
+  R.cmu._ens.forEach((w,i)=>w.setAttribute("fill",v[i]));const ev=document.getElementById("ev");if(ev)ev.textContent=v.filter(c=>c===cols[0]).length+"/3"},1400);
+
+if(isMob()){svg.setAttribute("viewBox","100 20 880 760");svg.setAttribute("preserveAspectRatio","xMidYMid meet")}
+fillBrief();
+const H0=(location.hash||"").slice(1);
+setMode({recruiter:"rec",overfit:"fit",visitor:"town"}[H0]||"town",true);
+addEventListener("hashchange",()=>{const m={recruiter:"rec",overfit:"fit",visitor:"town"}[location.hash.slice(1)];if(m&&m!==MODE)setMode(m,true)});
+requestAnimationFrame(frame);
+if(reduce)frame(0);
+</script>
+</body>
+</html>
