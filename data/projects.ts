@@ -8,13 +8,14 @@
 export type Project = {
   slug: string;
   title: string;
-  kind: "Research" | "Industry" | "Founder" | "Side project" | "Product research";
+  kind: "Research" | "Industry" | "Founder" | "Side project" | "Product research" | "Product";
   org: string;
   /** the one-line headline result shown in bold */
   result: string;
   body: string;
   tags: string[];
   link: string | null;
+  /** image path; leave empty ("") for a patterned placeholder */
   img: string;
   alt: string;
   shadow: "lavender" | "blue" | "peach" | "mint" | "pink" | "gray";
@@ -96,18 +97,18 @@ export const projects: Project[] = [
     keywords: ["sleep", "schedule", "calendar", "whoop", "recovery", "day", "plan"],
   },
   {
-    slug: "youjam",
-    title: "YouJam",
-    kind: "Side project",
-    org: "Open source",
-    result: "YouTube in sync across friends",
-    body: "Chrome extension that keeps YouTube playback in sync across friends, Spotify-Jam style. Anyone can play, pause or seek and everyone follows. MV3 with Firebase Realtime Database.",
-    tags: ["JavaScript", "Chrome MV3", "Firebase"],
-    link: "https://github.com/snehassan/YouJam",
-    img: "/images/youjam.svg",
-    alt: "YouJam, watching YouTube in sync with friends",
-    shadow: "peach",
-    keywords: ["youtube", "video", "sync", "friends", "watch", "together", "extension"],
+    slug: "ride-stories",
+    title: "Ride Stories",
+    kind: "Product",
+    org: "Ather Energy",
+    result: "Ride details and EV community stats",
+    body: "Ride details for every trip, plus stats from the wider EV community, built for Ather riders.",
+    tags: ["EV", "Community"],
+    link: null,
+    img: "",
+    alt: "Ride Stories",
+    shadow: "blue",
+    keywords: ["ride", "trip", "stats", "community", "ev", "electric", "rider"],
   },
   {
     slug: "zippy",
@@ -123,11 +124,24 @@ export const projects: Project[] = [
     shadow: "pink",
     keywords: ["robot", "walk", "bipedal", "small", "tiny", "hardware"],
   },
+  {
+    slug: "youjam",
+    title: "YouJam",
+    kind: "Side project",
+    org: "Open source",
+    result: "YouTube in sync across friends",
+    body: "Chrome extension that keeps YouTube playback in sync across friends, Spotify-Jam style. Anyone can play, pause or seek and everyone follows. MV3 with Firebase Realtime Database.",
+    tags: ["JavaScript", "Chrome MV3", "Firebase"],
+    link: "https://github.com/snehassan/YouJam",
+    img: "/images/youjam.svg",
+    alt: "YouJam, watching YouTube in sync with friends",
+    shadow: "peach",
+    keywords: ["youtube", "video", "sync", "friends", "watch", "together", "extension"],
+  },
 ];
 
 /** Smaller things, listed on the archive card. */
 export const archive: { title: string; note: string }[] = [
   { title: "Ather Unlocked", note: "city-wide treasure-hunt PWA for riders" },
-  { title: "Ride Stories", note: "ride details and EV community stats" },
   { title: "Sheetz Cooler Optimization", note: "confidential CV restocking system" },
 ];

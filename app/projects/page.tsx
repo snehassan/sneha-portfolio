@@ -7,8 +7,14 @@ export const metadata: Metadata = { title: "Projects | Sneha Hassan" };
 function Card({ p, big }: { p: Project; big?: boolean }) {
   return (
     <article className={`card card--${p.shadow}`} style={big ? { gridColumn: "1/-1" } : undefined}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="card-img" src={p.img} alt={p.alt} style={{ height: big ? 240 : 170 }} />
+      {p.img ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img className="card-img" src={p.img} alt={p.alt} style={{ height: big ? 240 : 170 }} />
+      ) : (
+        <div className="card-img placeholder" style={{ height: big ? 240 : 170 }} aria-hidden="true">
+          {p.title}
+        </div>
+      )}
       <div className="proj-body" style={big ? { padding: "26px 30px 28px" } : undefined}>
         <div className="proj-meta">
           <span>{p.kind}</span>
