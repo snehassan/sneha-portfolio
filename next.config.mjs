@@ -3,8 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   async rewrites() {
     return {
-      // Sneha Town (static, self-contained) is the homepage. The previous homepage lives at /classic.
-      beforeFiles: [{ source: "/", destination: "/town.html" }],
+      // Stack Overfit (static, self-contained) is the homepage. Sneha Town lives at /town, the original homepage at /classic.
+      beforeFiles: [
+        { source: "/", destination: "/stack-overfit.html" },
+        { source: "/town", destination: "/town.html" },
+      ],
     };
   },
 };
