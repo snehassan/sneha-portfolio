@@ -18,7 +18,7 @@ const work = [
   },
   {
     name: "Pothole Detection",
-    blurb: "CV pipeline deployed in Ather's vehicle data stack",
+    blurb: "accelerometer ML deployed across Ather's rider base",
     img: "/images/pothole.svg",
   },
   {
@@ -55,8 +55,8 @@ export default async function Home() {
       <p style={{ margin: "0 0 20px", textWrap: "pretty" }}>
         I&apos;m a software and AI/ML engineer. I build systems that <TrainWord />: most
         recently benchmarking large language models on biological reasoning at
-        Carnegie Mellon&apos;s xulab, and before that shipping computer vision on
-        electric scooters at Ather Energy, where a pothole-detection pipeline I
+        Carnegie Mellon&apos;s xulab, and before that shipping production ML on
+        electric scooters at Ather Energy, where a pothole-detection model I
         built reached 92% accuracy on real roads.
       </p>
       <p style={{ margin: "0 0 20px", textWrap: "pretty" }}>
