@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NameHeading } from "@/components/NameHeading";
-import { SecretPixel } from "@/components/SecretPixel";
+import { SiteFooter } from "@/components/SiteFooter";
+import { TrainWord } from "@/components/TrainWord";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
 import { primaryResume } from "@/data/resumes";
 
@@ -52,7 +53,7 @@ export default async function Home() {
       <NameHeading />
 
       <p style={{ margin: "0 0 20px", textWrap: "pretty" }}>
-        I&apos;m a software and AI/ML engineer. I build systems that learn: most
+        I&apos;m a software and AI/ML engineer. I build systems that <TrainWord />: most
         recently benchmarking large language models on biological reasoning at
         Carnegie Mellon&apos;s xulab, and before that shipping computer vision on
         electric scooters at Ather Energy, where a pothole-detection pipeline I
@@ -162,52 +163,10 @@ export default async function Home() {
           color: "var(--muted)",
         }}
       >
-        P.S. Five easter eggs are hidden on this site. Happy hunting.
+        P.S. Six easter eggs are hidden on this site. One of them is a word on this page that keeps learning if you let it.
       </p>
 
-      <hr
-        style={{
-          border: "none",
-          borderTop: "1px solid var(--rule)",
-          margin: "40px 0 20px",
-        }}
-      />
-      <footer
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 16,
-          flexWrap: "wrap",
-        }}
-      >
-        <nav
-          aria-label="Footer"
-          style={{
-            fontSize: 16,
-            display: "flex",
-            gap: 10,
-            flexWrap: "wrap",
-            color: "var(--muted)",
-          }}
-        >
-          <Link href="/">Home</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/writing">Writing</Link>
-          <Link href="/scribbles">Scribbles</Link>
-          <Link href="/experience">Experience</Link>
-          <Link href="/about">About</Link>
-        </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span
-            className="mono"
-            style={{ fontSize: 12, color: "var(--muted-2)" }}
-          >
-            © 2026
-          </span>
-          <SecretPixel />
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

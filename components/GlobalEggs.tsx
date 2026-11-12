@@ -8,6 +8,7 @@ import { useToast } from "./ToastProvider";
  * Global, always-mounted easter eggs:
  *  - Konami code  (↑↑↓↓←→←→BA) → toast + /game
  *  - Type "hire" anywhere       → email toast
+ *  - Type "overfit" anywhere    → /overfit (egg 6/6)
  *  - Console greeting on load   → egg 5/5
  */
 export function GlobalEggs() {
@@ -18,7 +19,7 @@ export function GlobalEggs() {
 
   useEffect(() => {
     console.log(
-      "%c☕ easter egg 5/5: you opened the console. hi, fellow nerd. → snehahassan7920@gmail.com",
+      "%c☕ easter egg 5/6: you opened the console. hi, fellow nerd. → snehahassan7920@gmail.com",
       "font-family:monospace;font-size:14px;color:#7c68b8;",
     );
 
@@ -37,8 +38,12 @@ export function GlobalEggs() {
         router.push("/game");
       }
       if (e.key.length === 1) {
-        word.current = (word.current + k).slice(-4);
-        if (word.current === "hire") {
+        word.current = (word.current + k).slice(-7);
+        if (word.current.endsWith("overfit")) {
+          word.current = "";
+          toast("ACHIEVEMENT: TRAINED TOO LONG (6/6)");
+          router.push("/overfit");
+        } else if (word.current.endsWith("hire")) {
           word.current = "";
           toast("ACHIEVEMENT: STRAIGHT TO THE POINT. snehahassan7920@gmail.com");
         }
