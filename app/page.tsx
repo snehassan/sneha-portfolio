@@ -2,6 +2,8 @@ import Link from "next/link";
 import { NameHeading } from "@/components/NameHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TrainWord } from "@/components/TrainWord";
+import { CurrentProjects } from "@/components/CurrentProjects";
+import { current } from "@/data/current";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
 import { primaryResume } from "@/data/resumes";
 
@@ -154,6 +156,8 @@ export default async function Home() {
         </a>
         . More about <Link href="/about">the human behind the resume</Link>.
       </p>
+
+      <CurrentProjects items={current} />
 
       <p
         style={{
