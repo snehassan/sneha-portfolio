@@ -1,0 +1,20 @@
+[
+  {
+    "title": "LLM ensembles for biology",
+    "status": "RESEARCHING",
+    "note": "Teaching three models to vote on bio-imaging questions at CMU's xulab.",
+    "url": "/experience"
+  },
+  {
+    "title": "RecoVR",
+    "status": "BUILDING",
+    "note": "VR physiotherapy, incubated at Carnegie Mellon.",
+    "url": "https://github.com/snehassan/RecoVR"
+  },
+  {
+    "title": "This website",
+    "status": "TINKERING",
+    "note": "Six easter eggs and counting. One of them overfits.",
+    "url": ""
+  }
+]
