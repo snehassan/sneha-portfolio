@@ -1,15 +1,15 @@
 [
   {
+    "title": "Instagram Tech Blog",
+    "status": "TINKERING",
+    "note": "My tech-fluencer era",
+    "url": "https://www.instagram.com/debugged.brain/"
+  },
+  {
     "title": "LLM ensembles for biology",
     "status": "RESEARCHING",
     "note": "Teaching three models to vote on bio-imaging questions at CMU's xulab.",
     "url": "/experience"
-  },
-  {
-    "title": "RecoVR",
-    "status": "BUILDING",
-    "note": "VR physiotherapy, incubated at Carnegie Mellon.",
-    "url": "https://github.com/snehassan/RecoVR"
   },
   {
     "title": "Self improving agent sessions",
@@ -18,9 +18,9 @@
     "url": "https://github.com/snehassan/validated-memory"
   },
   {
-    "title": "Instagram Tech Blog",
-    "status": "TINKERING",
-    "note": "My tech-fluencer era",
-    "url": "https://www.instagram.com/debugged.brain/"
+    "title": "RecoVR",
+    "status": "BUILDING",
+    "note": "VR physiotherapy, incubated at Carnegie Mellon.",
+    "url": "https://github.com/snehassan/RecoVR"
   }
 ]
