@@ -14,10 +14,10 @@ export const NAV = [
 ];
 
 /** Top-right nav on inner pages. Highlights the current page. */
-export function SiteNav() {
+export function SiteNav({ className = "" }: { className?: string }) {
   const path = usePathname();
   return (
-    <nav aria-label="Site" className="site-nav">
+    <nav aria-label="Site" className={("site-nav " + className).trim()}>
       {NAV.map((n) => (
         <Link key={n.href} href={n.href} aria-current={path === n.href || path.startsWith(n.href + "/") ? "page" : undefined}>
           {n.label}
