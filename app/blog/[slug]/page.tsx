@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { fmtPostDate } from "@/lib/post";
 import { renderMarkdown, readingMinutes } from "@/lib/markdown";
+import { PostEngagement } from "@/components/PostEngagement";
 
 export const dynamicParams = false;
 
@@ -59,6 +60,18 @@ export default async function PostPage({ params }: Params) {
         )}
 
         <article className="prose" dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }} />
+
+        <PostEngagement slug={post.slug} />
+
+        {post.medium && (
+          <p className="mono" style={{ fontSize: 12, color: "var(--muted)", marginTop: 36 }}>
+            Originally published on{" "}
+            <a href={post.medium} target="_blank" rel="noreferrer">
+              Medium
+            </a>
+            .
+          </p>
+        )}
 
         {(newer || older) && (
           <nav className="post-pager" aria-label="More posts">

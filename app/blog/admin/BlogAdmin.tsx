@@ -129,6 +129,31 @@ export function BlogAdmin({ initial }: { initial: Post[] }) {
     }
   };
 
+  const [importInfo, setImportInfo] = useState<{ ready: string[]; skipped: string[]; done?: string[] } | null>(null);
+
+  const importMedium = async (dryRun: boolean) => {
+    setBusy(true);
+    setStatus(null);
+    try {
+      const res = await fetch("/api/blog/import", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password, dryRun }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setStatus({ kind: "err", msg: data.error ?? "Import failed." });
+        return;
+      }
+      setImportInfo({ ready: data.wouldImport ?? [], skipped: data.skipped ?? [], done: dryRun ? undefined : data.imported });
+      setStatus({ kind: "ok", msg: data.message });
+    } catch (e) {
+      setStatus({ kind: "err", msg: e instanceof Error ? e.message : "Network error." });
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const blocked = busy || !password || problems.length > 0;
 
   return (
@@ -142,6 +167,26 @@ export function BlogAdmin({ initial }: { initial: Post[] }) {
             no posts yet
           </p>
         )}
+        <div className="blog-admin__import">
+          <span className="mono">FROM MEDIUM</span>
+          <button type="button" onClick={() => importMedium(true)} disabled={busy || !password} style={{ ...button, width: "100%", fontSize: 12, padding: "6px 10px", opacity: busy || !password ? 0.5 : 1 }}>
+            CHECK MEDIUM
+          </button>
+          {importInfo && !importInfo.done && importInfo.ready.length > 0 && (
+            <>
+              <ul>
+                {importInfo.ready.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+              <button type="button" onClick={() => importMedium(false)} disabled={busy} style={{ ...button, width: "100%", fontSize: 12, padding: "6px 10px", background: "var(--ink)", color: "#fff" }}>
+                IMPORT {importInfo.ready.length}
+              </button>
+            </>
+          )}
+          {importInfo?.done && importInfo.done.length > 0 && <p className="mono">imported {importInfo.done.length}, reload in a minute to edit them</p>}
+          {!password && <p className="mono">enter your password below first</p>}
+        </div>
         {posts.map((p) => (
           <button
             key={p.slug}
