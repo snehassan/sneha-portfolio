@@ -4,16 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Current } from "@/data/current";
 
-const KEY = "sh-current-seen";
-
-/** Small fingerprint of the list, so editing it makes the popup show again. */
-function fingerprint(items: Current[]) {
-  const str = JSON.stringify(items);
-  let h = 5381;
-  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
-  return String(h >>> 0);
-}
-
 function Item({ c }: { c: Current }) {
   const title = c.url ? (
     c.url.startsWith("/") ? (
@@ -38,8 +28,8 @@ function Item({ c }: { c: Current }) {
 }
 
 /**
- * On a visitor's first homepage view this session, and again whenever the
- * list changes, current projects appear as a small popup. Closing it sends the card down to its permanent spot at
+ * Every time the homepage loads (refreshes included), current projects appear
+ * as a small popup. Closing it sends the card down to its permanent spot at
  * the bottom of the page.
  */
 export function CurrentProjects({ items }: { items: Current[] }) {
@@ -52,14 +42,9 @@ export function CurrentProjects({ items }: { items: Current[] }) {
 
   useEffect(() => {
     if (!items.length) return;
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem(KEY) === fingerprint(items);
-    } catch {}
-    if (seen) return;
     const t = setTimeout(() => setMode("popup"), 700);
     return () => clearTimeout(t);
-  }, [items]);
+  }, [items.length]);
 
   useEffect(() => {
     if (mode !== "popup") return;
@@ -73,9 +58,6 @@ export function CurrentProjects({ items }: { items: Current[] }) {
   }, [mode]);
 
   const close = () => {
-    try {
-      sessionStorage.setItem(KEY, fingerprint(items));
-    } catch {}
     const pop = popRef.current;
     const slot = slotRef.current;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
