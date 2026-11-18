@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 export const NAV = [
   { href: "/projects", label: "projects" },
   { href: "/experience", label: "experience" },
+  { href: "/blog", label: "blog" },
   { href: "/writing", label: "writing" },
   { href: "/scribbles", label: "scribbles" },
   { href: "/about", label: "about" },
@@ -18,7 +19,7 @@ export function SiteNav() {
   return (
     <nav aria-label="Site" className="site-nav">
       {NAV.map((n) => (
-        <Link key={n.href} href={n.href} aria-current={path === n.href ? "page" : undefined}>
+        <Link key={n.href} href={n.href} aria-current={path === n.href || path.startsWith(n.href + "/") ? "page" : undefined}>
           {n.label}
         </Link>
       ))}

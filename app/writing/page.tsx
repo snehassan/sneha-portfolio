@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
 
@@ -18,7 +19,7 @@ export default async function Writing() {
           <a href={MEDIUM_URL} target="_blank" rel="noreferrer">
             Medium
           </a>
-          .
+          . New posts now go up on the <Link href="/blog">blog</Link>, right here on the site.
         </>
       }
     >
