@@ -489,3 +489,10 @@ a.back-link {
   .blog-admin__editor--split { grid-template-columns: 1fr; }
   .blog-admin__row { grid-template-columns: 1fr; }
 }
+
+.prose .table-wrap { overflow-x: auto; margin: 0 0 1.15em; border: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--pastel-mint); }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.45; background: #fff; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #e6e2d8; }
+.prose th { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); }
+.prose tr:last-child td { border-bottom: none; }
+.prose td code { font-size: 12.5px; overflow-wrap: anywhere; }

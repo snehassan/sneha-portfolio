@@ -4,7 +4,7 @@
  *
  * Supports: # headings, paragraphs, **bold**, *italic*, `code`, ~~strike~~,
  * [links](url), ![images](url "caption"), > quotes, - / 1. lists,
- * ``` fenced code ```, --- rules, and line breaks.
+ * ``` fenced code ```, | tables |, --- rules, and line breaks.
  * Raw HTML is escaped, never passed through.
  */
 
@@ -84,7 +84,7 @@ export function renderMarkdown(md: string): string {
 
     const h = line.match(/^(#{1,4})\s+(.*)$/);
     if (h) {
-      const level = Math.min(h[1].length + 1, 4); // # in a post is an h2; the page owns h1
+      const level = Math.max(2, h[1].length); // # and ## are h2 (the page owns h1), ### h3, #### h4
       out.push(`<h${level} id="${slugId(h[2])}">${inline(h[2])}</h${level}>`);
       i++;
       continue;
@@ -100,6 +100,27 @@ export function renderMarkdown(md: string): string {
       const buf: string[] = [];
       while (i < lines.length && /^>\s?/.test(lines[i])) buf.push(lines[i++].replace(/^>\s?/, ""));
       out.push(`<blockquote>${renderMarkdown(buf.join("\n"))}</blockquote>`);
+      continue;
+    }
+
+    // GitHub-style table: | a | b | then |---|---|
+    if (/^\s*\|/.test(line) && i + 1 < lines.length && /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?\s*$/.test(lines[i + 1])) {
+      const cells = (l: string) =>
+        l
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/(^|[^\\])\|$/, "$1")
+          .split(/(?<!\\)\|/)
+          .map((c) => inline(c.trim().replace(/\\\|/g, "|")));
+      const head = cells(line);
+      i += 2;
+      const rows: string[][] = [];
+      while (i < lines.length && /^\s*\|/.test(lines[i])) rows.push(cells(lines[i++]));
+      out.push(
+        `<div class="table-wrap"><table><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows
+          .map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`)
+          .join("")}</tbody></table></div>`,
+      );
       continue;
     }
 
