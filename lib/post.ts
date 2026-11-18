@@ -8,6 +8,7 @@ export type Post = {
   tags: string[];
   draft: boolean;
   body: string; // markdown
+  medium?: string; // original Medium URL, for imported posts
 };
 
 export const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -34,6 +35,7 @@ export function toFile(p: Post) {
     `summary: ${q(p.summary)}`,
     `tags: [${p.tags.map(q).join(", ")}]`,
     `draft: ${p.draft ? "true" : "false"}`,
+    ...(p.medium ? [`medium: ${q(p.medium)}`] : []),
     "---",
     "",
     p.body.trim(),
@@ -71,6 +73,7 @@ export function fromFile(slug: string, raw: string): Post {
     tags: tagsRaw ? tagsRaw.split(",").map(unq).filter(Boolean) : [],
     draft: unq(meta.draft || "false") === "true",
     body: (m ? m[2] : text).trim(),
+    ...(meta.medium ? { medium: unq(meta.medium) } : {}),
   };
 }
 

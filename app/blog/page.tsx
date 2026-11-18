@@ -4,6 +4,7 @@ import { PageShell } from "@/components/PageShell";
 import { getAllPosts } from "@/lib/blog";
 import { fmtPostDate } from "@/lib/post";
 import { readingMinutes } from "@/lib/markdown";
+import { PostListStats } from "@/components/PostEngagement";
 
 export const metadata: Metadata = {
   title: "Blog | Sneha Hassan",
@@ -39,7 +40,10 @@ export default function Blog() {
             <Link key={p.slug} href={`/blog/${p.slug}`} className="article-row">
               <div className="row-meta">
                 {i === 0 && <span className="pill">LATEST</span>}
-                <span>{[fmtPostDate(p.date), `${readingMinutes(p.body)} MIN`].filter(Boolean).join(" · ")}</span>
+                <span>
+                  {[fmtPostDate(p.date), `${readingMinutes(p.body)} MIN`].filter(Boolean).join(" · ")}
+                  <span data-post-stats={p.slug} />
+                </span>
               </div>
               <h2 className="row-title">{p.title}</h2>
               {p.summary && <p className="row-text">{p.summary}</p>}
@@ -52,6 +56,7 @@ export default function Blog() {
               )}
             </Link>
           ))}
+          <PostListStats slugs={posts.map((p) => p.slug)} />
         </div>
       )}
     </PageShell>

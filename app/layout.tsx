@@ -3,6 +3,7 @@ import { Newsreader, Space_Grotesk, IBM_Plex_Mono, Press_Start_2P } from "next/f
 import "./globals.css";
 import { ToastProvider } from "@/components/ToastProvider";
 import { GlobalEggs } from "@/components/GlobalEggs";
+import { Tracker } from "@/components/Tracker";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <ToastProvider>
           <GlobalEggs />
+          <Tracker />
           {children}
         </ToastProvider>
       </body>

@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
+import { importedFromMedium } from "@/lib/blog";
 
 export const metadata: Metadata = { title: "Writing | Sneha Hassan" };
 
 export default async function Writing() {
-  const articles = await getMediumArticles();
+  const all = await getMediumArticles();
+  const onBlog = importedFromMedium();
+  // Anything already copied to the blog is shown there, not here.
+  const articles = all.filter((a) => !onBlog(a.link, a.title));
+  const moved = all.length - articles.length;
 
   return (
     <PageShell
@@ -23,7 +28,14 @@ export default async function Writing() {
         </>
       }
     >
-      {articles.length === 0 ? (
+      {moved > 0 && (
+        <p className="body-copy" style={{ margin: "0 0 18px" }}>
+          {articles.length === 0 ? "Every essay from Medium" : moved === 1 ? "One essay from Medium" : `${moved} essays from Medium`} now{" "}
+          {articles.length > 0 && moved === 1 ? "lives" : "live"} on the{" "}
+          <Link href="/blog">blog</Link>.
+        </p>
+      )}
+      {articles.length === 0 && moved > 0 ? null : articles.length === 0 ? (
         <p className="body-copy">
           Couldn&apos;t reach Medium just now. The full archive lives{" "}
           <a href={MEDIUM_URL} target="_blank" rel="noreferrer">

@@ -38,6 +38,7 @@ function isPost(p: unknown): p is Post {
     x.tags.length <= 12 &&
     x.tags.every((t) => typeof t === "string" && t.length <= 40) &&
     typeof x.draft === "boolean" &&
+    (x.medium === undefined || (typeof x.medium === "string" && /^https:\/\//.test(x.medium))) &&
     typeof x.body === "string" &&
     x.body.trim().length > 0 &&
     x.body.length <= 200_000

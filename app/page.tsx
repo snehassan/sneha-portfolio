@@ -6,7 +6,7 @@ import { TrainWord } from "@/components/TrainWord";
 import { CurrentProjects } from "@/components/CurrentProjects";
 import { current } from "@/data/current";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, importedFromMedium } from "@/lib/blog";
 import { primaryResume } from "@/data/resumes";
 
 const work = [
@@ -43,8 +43,9 @@ export default async function Home() {
   const articles = await getMediumArticles(3);
   // Site blog posts come first, then Medium fills the list up to three.
   const blogPosts = getAllPosts().map((p) => ({ title: p.title, href: `/blog/${p.slug}` }));
+  const onBlog = importedFromMedium();
   const medium = articles.length
-    ? articles.map((a) => ({ title: a.title, href: a.link }))
+    ? articles.filter((a) => !onBlog(a.link, a.title)).map((a) => ({ title: a.title, href: a.link }))
     : fallbackWriting.map((t) => ({ title: t, href: "/writing" }));
   const writing = [...blogPosts, ...medium].slice(0, 3);
 

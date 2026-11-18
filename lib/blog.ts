@@ -21,6 +21,13 @@ export function getAllPosts({ includeDrafts = false } = {}): Post[] {
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.title.localeCompare(b.title)));
 }
 
+/** Is this Medium article already on the blog? (matched by URL, then title) */
+export function importedFromMedium(posts: Post[] = getAllPosts({ includeDrafts: true })) {
+  const urls = new Set(posts.map((p) => p.medium).filter(Boolean) as string[]);
+  const titles = new Set(posts.map((p) => p.title.trim().toLowerCase()));
+  return (link: string, title: string) => urls.has(link.split("?")[0]) || titles.has(title.trim().toLowerCase());
+}
+
 export function getPost(slug: string): Post | undefined {
   return getAllPosts().find((p) => p.slug === slug);
 }

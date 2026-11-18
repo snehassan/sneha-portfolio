@@ -31,20 +31,27 @@ function inline(src: string): string {
     return `\u0000${codes.length - 1}\u0000`;
   });
   s = esc(s);
+  // Generated tags are stashed too, so * and _ inside URLs can't become italics.
+  const stash = (html: string) => {
+    codes.push(html);
+    return `\u0000${codes.length - 1}\u0000`;
+  };
   s = s.replace(/!\[([^\]]*)\]\(((?:[^()\s]|\([^()\s]*\))+)(?:\s+&quot;([^&]*)&quot;)?\)/g, (_, alt, url, cap) => {
     const img = `<img src="${safeUrl(url)}" alt="${alt}" loading="lazy" />`;
-    return cap ? `<figure>${img}<figcaption>${cap}</figcaption></figure>` : img;
+    return stash(cap ? `<figure>${img}<figcaption>${cap}</figcaption></figure>` : img);
   });
   s = s.replace(/\[([^\]]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)/g, (_, text, url) => {
     const ext = /^https?:/i.test(url);
-    return `<a href="${safeUrl(url)}"${ext ? ' target="_blank" rel="noreferrer"' : ""}>${text}</a>`;
+    return stash(`<a href="${safeUrl(url)}"${ext ? ' target="_blank" rel="noreferrer"' : ""}>`) + text + stash("</a>");
   });
   s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   s = s.replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>");
   s = s.replace(/(^|\W)_([^_\s][^_]*)_(?=\W|$)/g, "$1<em>$2</em>");
   s = s.replace(/~~([^~]+)~~/g, "<del>$1</del>");
   s = s.replace(/ {2,}\n|\\\n/g, "<br />");
-  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => codes[Number(i)]);
+  // Restore stashed pieces (a stash can contain another, so loop).
+  while (/\u0000\d+\u0000/.test(s)) s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => codes[Number(i)]);
+  return s;
 }
 
 function slugId(text: string) {
