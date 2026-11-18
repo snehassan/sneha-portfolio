@@ -5,6 +5,7 @@ import { TrainWord } from "@/components/TrainWord";
 import { CurrentProjects } from "@/components/CurrentProjects";
 import { current } from "@/data/current";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
+import { getAllPosts } from "@/lib/blog";
 import { primaryResume } from "@/data/resumes";
 
 const work = [
@@ -39,6 +40,12 @@ const fallbackWriting = [
 
 export default async function Home() {
   const articles = await getMediumArticles(3);
+  // Site blog posts come first, then Medium fills the list up to three.
+  const blogPosts = getAllPosts().map((p) => ({ title: p.title, href: `/blog/${p.slug}` }));
+  const medium = articles.length
+    ? articles.map((a) => ({ title: a.title, href: a.link }))
+    : fallbackWriting.map((t) => ({ title: t, href: "/writing" }));
+  const writing = [...blogPosts, ...medium].slice(0, 3);
 
   return (
     <main
@@ -108,10 +115,7 @@ export default async function Home() {
           gap: 8,
         }}
       >
-        {(articles.length
-          ? articles.map((a) => ({ title: a.title, href: a.link }))
-          : fallbackWriting.map((t) => ({ title: t, href: "/writing" }))
-        ).map((a) => (
+        {writing.map((a) => (
           <li key={a.title}>
             <Link href={a.href}>
               <em>{a.title}</em>
@@ -120,7 +124,8 @@ export default async function Home() {
         ))}
       </ul>
       <p style={{ margin: "0 0 20px" }}>
-        More on the <Link href="/writing">writing page</Link>, some loose{" "}
+        More on the <Link href="/blog">blog</Link>, older essays on the{" "}
+        <Link href="/writing">writing page</Link>, some loose{" "}
         <Link href="/scribbles">scribbles</Link>, and the full archive on{" "}
         <a href={MEDIUM_URL} target="_blank" rel="noreferrer">
           Medium
