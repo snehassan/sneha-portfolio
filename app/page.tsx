@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NameHeading } from "@/components/NameHeading";
+import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TrainWord } from "@/components/TrainWord";
 import { CurrentProjects } from "@/components/CurrentProjects";
@@ -52,13 +53,15 @@ export default async function Home() {
       style={{
         maxWidth: 660,
         margin: "0 auto",
-        padding: "72px 24px 48px",
+        padding: "28px 24px 48px",
         fontFamily: "var(--font-newsreader), serif",
         color: "var(--ink)",
         fontSize: 19,
         lineHeight: 1.65,
       }}
     >
+      <SiteNav className="site-nav--home" />
+
       <NameHeading />
 
       <p style={{ margin: "0 0 20px", textWrap: "pretty" }}>
@@ -175,7 +178,7 @@ export default async function Home() {
         P.S. Six easter eggs are hidden on this site. One of them is a word on this page that keeps learning if you let it.
       </p>
 
-      <SiteFooter />
+      <SiteFooter links={false} />
     </main>
   );
 }
