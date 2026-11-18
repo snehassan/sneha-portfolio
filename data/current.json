@@ -12,15 +12,15 @@
     "url": "https://github.com/snehassan/RecoVR"
   },
   {
-    "title": "This website",
-    "status": "TINKERING",
-    "note": "Six easter eggs and counting. One of them overfits.",
-    "url": ""
-  },
-  {
     "title": "Self improving agent sessions",
     "status": "RESEARCH",
     "note": "Validated Agent Memory is a research prototype that tests whether AI agents improve more reliably when they only remember lessons that have been checked for correctness.",
     "url": "https://github.com/snehassan/validated-memory"
+  },
+  {
+    "title": "Instagram Tech Blog",
+    "status": "TINKERING",
+    "note": "My tech-fluencer era",
+    "url": "https://www.instagram.com/debugged.brain/"
   }
 ]
