@@ -3,7 +3,7 @@ title: "I Tried It: Deploying My First Charm with Juju 4"
 date: 2026-11-18
 summary: "Over two evenings I put Juju 4.0's two-command promise to the test, starting from an empty cloud account and zero Juju experience."
 tags: ["juju", "kubernetes", "canonical", "devops"]
-draft: true
+draft: false
 ---
 
 Juju promises that deploying a database and wiring it to your app takes a couple of commands. Over two evenings I put that promise to the test with Juju 4.0, Canonical's brand-new major release, starting from an empty cloud account and zero Juju experience.
