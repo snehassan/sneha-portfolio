@@ -3,7 +3,7 @@ title: "Norman Doors, Indian Edition"
 date: 2026-11-19
 summary: "Why paying my chaiwala over UPI feels like magic and uploading a photo to a government portal feels like punishment, through Don Norman's design principles."
 tags: ["design", "ux", "upi", "india"]
-draft: true
+draft: false
 ---
 
 ## Introduction
@@ -19,6 +19,7 @@ Same country. Same users. Same phones. So why does one feel like magic and the o
 Don Norman answered this in 1988, in the book we now know as *The Design of Everyday Things*. He just used doors instead of payment apps.
 
 ## Norman's big idea: it's not you, it's the design
+![norman door pull 600x338](/images/blog/norman-doors-indian-edition-norman-door-pull-600x338-4f5daaad.jpg "")
 
 You know those doors where you push and they need a pull? Designers literally call them **Norman doors**, after Don Norman. His point was simple and a little rebellious. When people keep making the same mistake, the people aren't stupid. The design is.
 
