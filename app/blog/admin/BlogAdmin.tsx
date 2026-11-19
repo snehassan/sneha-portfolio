@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { renderMarkdown, readingMinutes } from "@/lib/markdown";
 import { slugify, SLUG_RE, type Post } from "@/lib/post";
@@ -37,7 +37,46 @@ const button: CSSProperties = {
   borderRadius: 0,
 };
 
-const CHEATSHEET = "## Heading · **bold** · *italic* · `code` · [link](https://...) · ![alt](https://image.png \"caption\") · > quote · - list · ``` code block ```";
+/** Shrink an image in the browser: max 1600px wide, photos as JPEG. GIFs and small PNGs stay as they are. */
+async function shrink(file: File): Promise<{ data: string; type: string; kb: number }> {
+  const toBase64 = (b: Blob) =>
+    new Promise<string>((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(String(r.result).split(",")[1] || "");
+      r.onerror = () => rej(new Error("Couldn't read that file."));
+      r.readAsDataURL(b);
+    });
+  const keep = file.type === "image/gif" || (file.type === "image/png" && file.size < 600 * 1024);
+  if (keep) return { data: await toBase64(file), type: file.type, kb: Math.round(file.size / 1024) };
+
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise<HTMLImageElement>((res, rej) => {
+      const i = new Image();
+      i.onload = () => res(i);
+      i.onerror = () => rej(new Error("That file isn't an image the browser can open."));
+      i.src = url;
+    });
+    const scale = Math.min(1, 1600 / img.naturalWidth);
+    const w = Math.round(img.naturalWidth * scale);
+    const h = Math.round(img.naturalHeight * scale);
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Couldn't process the image.");
+    ctx.fillStyle = "#fff"; // JPEG has no transparency
+    ctx.fillRect(0, 0, w, h);
+    ctx.drawImage(img, 0, 0, w, h);
+    const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, "image/jpeg", 0.85));
+    if (!blob) throw new Error("Couldn't compress the image.");
+    return { data: await toBase64(blob), type: "image/jpeg", kb: Math.round(blob.size / 1024) };
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+const CHEATSHEET = "Drag, paste or + ADD IMAGE to insert a picture · ## Heading · **bold** · *italic* · `code` · [link](https://...) · ![alt](https://image.png \"caption\") · > quote · - list · ``` code block ```";
 
 export function BlogAdmin({ initial }: { initial: Post[] }) {
   const [posts, setPosts] = useState<Post[]>(initial);
@@ -50,7 +89,69 @@ export function BlogAdmin({ initial }: { initial: Post[] }) {
   const [status, setStatus] = useState<{ kind: "ok" | "err"; msg: string } | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const preview = useMemo(() => renderMarkdown(post.body), [post.body]);
+  const textRef = useRef<HTMLTextAreaElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  // Freshly uploaded images aren't live until the site rebuilds, so the preview shows the local copy.
+  const [localImgs, setLocalImgs] = useState<Record<string, string>>({});
+  const preview = useMemo(() => {
+    let html = renderMarkdown(post.body);
+    for (const [url, local] of Object.entries(localImgs)) html = html.split(`src="${url}"`).join(`src="${local}"`);
+    return html;
+  }, [post.body, localImgs]);
+
+  const insertAtCursor = (text: string) => {
+    const el = textRef.current;
+    setPost((p) => {
+      const start = el ? el.selectionStart : p.body.length;
+      const end = el ? el.selectionEnd : p.body.length;
+      const before = p.body.slice(0, start);
+      const after = p.body.slice(end);
+      const pad = (before && !before.endsWith("\n\n") ? (before.endsWith("\n") ? "\n" : "\n\n") : "");
+      const body = before + pad + text + "\n\n" + after.replace(/^\n+/, "");
+      const caret = (before + pad + text + "\n\n").length;
+      requestAnimationFrame(() => {
+        if (!el) return;
+        el.focus();
+        el.setSelectionRange(caret, caret);
+      });
+      return { ...p, body };
+    });
+  };
+
+  const uploadImages = async (files: File[]) => {
+    const imgs = files.filter((f) => f.type.startsWith("image/"));
+    if (!imgs.length) return;
+    if (!password) {
+      setStatus({ kind: "err", msg: "Type your password in the box at the bottom first, then add the image again." });
+      return;
+    }
+    setUploading(true);
+    setStatus(null);
+    try {
+      for (const file of imgs) {
+        const { data, type, kb } = await shrink(file);
+        const res = await fetch("/api/blog/upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password, name: file.name, type, data, slug: post.slug }),
+        });
+        const out = await res.json().catch(() => ({ error: res.status === 413 ? "That image is too big. Try a smaller one." : "Upload failed." }));
+        if (!res.ok) {
+          setStatus({ kind: "err", msg: out.error ?? "Upload failed." });
+          return;
+        }
+        setLocalImgs((m) => ({ ...m, [out.url]: URL.createObjectURL(file) }));
+        const alt = file.name.replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " ").replace(/[\[\]]/g, "");
+        insertAtCursor(`![${alt}](${out.url} "")`);
+        setStatus({ kind: "ok", msg: `Image added (${kb} KB). Edit the alt text and the caption in quotes, or delete the "" if you don't want a caption.` });
+      }
+    } catch (e) {
+      setStatus({ kind: "err", msg: e instanceof Error ? e.message : "Upload failed." });
+    } finally {
+      setUploading(false);
+    }
+  };
   const set = <K extends keyof Post>(k: K, v: Post[K]) => setPost((p) => ({ ...p, [k]: v }));
 
   const open = (p: Post | null) => {
@@ -249,6 +350,25 @@ export function BlogAdmin({ initial }: { initial: Post[] }) {
               </button>
             ))}
           </div>
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            disabled={uploading}
+            style={{ ...button, padding: "4px 12px", fontSize: 12, marginRight: "auto", opacity: uploading ? 0.5 : 1 }}
+          >
+            {uploading ? "UPLOADING..." : "+ ADD IMAGE"}
+          </button>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            multiple
+            hidden
+            onChange={(e) => {
+              uploadImages(Array.from(e.target.files || []) as File[]);
+              e.target.value = "";
+            }}
+          />
           <span className="mono" style={{ fontSize: 12, color: "var(--muted)" }}>
             {post.body.trim() ? `${post.body.split(/\s+/).filter(Boolean).length} words · ${readingMinutes(post.body)} min read` : "markdown"}
           </span>
@@ -257,6 +377,22 @@ export function BlogAdmin({ initial }: { initial: Post[] }) {
         <div className={"blog-admin__editor blog-admin__editor--" + view}>
           {view !== "preview" && (
             <textarea
+              ref={textRef}
+              onPaste={(e) => {
+                const files = (Array.from(e.clipboardData.files || []) as File[]);
+                if (files.some((f) => f.type.startsWith("image/"))) {
+                  e.preventDefault();
+                  uploadImages(files);
+                }
+              }}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                const files = (Array.from(e.dataTransfer.files || []) as File[]);
+                if (files.length) {
+                  e.preventDefault();
+                  uploadImages(files);
+                }
+              }}
               value={post.body}
               onChange={(e) => set("body", e.target.value)}
               placeholder={"Start writing.\n\n## A heading\n\nA paragraph with **bold** and a [link](https://example.com)."}
@@ -277,6 +413,11 @@ export function BlogAdmin({ initial }: { initial: Post[] }) {
             </div>
           )}
         </div>
+        {status && (uploading || /image|password in the box|upload/i.test(status.msg)) && (
+          <p className="mono" style={{ fontSize: 12, margin: "8px 0 0", color: status.kind === "ok" ? "#2f6b4f" : "#a8503c" }}>
+            {status.msg}
+          </p>
+        )}
         <p className="mono" style={{ fontSize: 11, color: "var(--muted)", margin: "8px 0 24px", lineHeight: 1.6 }}>
           {CHEATSHEET}
         </p>
