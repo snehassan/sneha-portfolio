@@ -1,9 +1,15 @@
 import { Fragment } from "react";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageShell } from "@/components/PageShell";
 import { jobs, stack } from "@/data/experience";
 
-export const metadata: Metadata = { title: "Experience | Sneha Hassan" };
+export const metadata: Metadata = pageMeta({
+  title: "Experience | Sneha Hassan",
+  description:
+    "Sneha Hassan's experience: Research Engineer (GenAI) at Carnegie Mellon University, Software Developer Intern at Telvue, and Software Developer at Ather Energy building production ML and full-stack systems.",
+  path: "/experience",
+});
 
 export default function Experience() {
   return (

@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageShell } from "@/components/PageShell";
 import { CoffeeWord } from "@/components/CoffeeWord";
 
-export const metadata: Metadata = { title: "About | Sneha Hassan" };
+export const metadata: Metadata = pageMeta({
+  title: "About | Sneha Hassan",
+  description:
+    "About Sneha Hassan: a software and AI/ML engineer at Carnegie Mellon who asks language models hard biology questions, builds VR rehab tools and matchbox-sized robots.",
+  path: "/about",
+});
 
 export default function About() {
   return (

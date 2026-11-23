@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { getMediumArticles, MEDIUM_URL } from "@/lib/medium";
 import { importedFromMedium } from "@/lib/blog";
 
-export const metadata: Metadata = { title: "Writing | Sneha Hassan" };
+export const metadata: Metadata = pageMeta({
+  title: "Writing | Sneha Hassan",
+  description:
+    "Essays by Sneha Hassan on ML, software and building things, from Medium and the blog.",
+  path: "/writing",
+});
 
 export default async function Writing() {
   const all = await getMediumArticles();

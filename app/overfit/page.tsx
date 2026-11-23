@@ -3,7 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { OverfitLab } from "@/components/OverfitLab";
 import { projects } from "@/data/projects";
 
-export const metadata: Metadata = { title: "The Overfit Room | Sneha Hassan" };
+export const metadata: Metadata = { title: "The Overfit Room | Sneha Hassan", robots: { index: false, follow: true } }; // an easter egg: keep it out of search
 
 export default function Overfit() {
   return (

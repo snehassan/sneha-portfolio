@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Space_Grotesk, IBM_Plex_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
+import { pageMeta, DEFAULT_DESCRIPTION } from "@/lib/seo";
 import { ToastProvider } from "@/components/ToastProvider";
 import { GlobalEggs } from "@/components/GlobalEggs";
 import { Tracker } from "@/components/Tracker";
@@ -36,15 +37,19 @@ const pressStart = Press_Start_2P({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sneha.is-a.dev"),
-  title: "Sneha Hassan | Software & AI/ML Engineer",
-  description:
-    "Sneha Hassan is a software and AI/ML engineer. LLM research at Carnegie Mellon's xulab, production ML at Ather Energy, and a few things that beep.",
-  openGraph: {
+  ...pageMeta({
     title: "Sneha Hassan | Software & AI/ML Engineer",
-    description:
-      "Software and AI/ML engineer. LLM research at CMU's xulab, production ML at Ather Energy.",
-    type: "website",
-  },
+    description: DEFAULT_DESCRIPTION,
+    path: "/",
+    type: "profile",
+  }),
+  // No site-wide canonical: each page declares its own, so hidden pages don't claim to be the homepage.
+  alternates: { types: { "application/rss+xml": [{ url: "/blog/rss.xml", title: "Sneha Hassan's blog" }] } },
+  applicationName: "Sneha Hassan",
+  authors: [{ name: "Sneha Hassan", url: "https://sneha.is-a.dev" }],
+  creator: "Sneha Hassan",
+  keywords: ["Sneha Hassan", "software engineer", "AI engineer", "ML engineer", "machine learning", "LLM", "Carnegie Mellon", "Ather Energy", "forward deployed engineer", "portfolio"],
+  verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
   icons: {
     icon: [
       {

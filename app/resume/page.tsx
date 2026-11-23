@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageShell } from "@/components/PageShell";
 import { resumes } from "@/data/resumes";
 
-export const metadata: Metadata = { title: "Resume | Sneha Hassan" };
+export const metadata: Metadata = pageMeta({
+  title: "Resume | Sneha Hassan",
+  description:
+    "Download Sneha Hassan's resume: software engineering, solutions engineering and product versions.",
+  path: "/resume",
+});
 
 export default function ResumePage() {
   return (

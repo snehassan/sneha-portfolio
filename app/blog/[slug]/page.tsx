@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta, jsonLd, SITE_URL } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteNav } from "@/components/SiteNav";
@@ -20,11 +21,15 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return { title: "Blog | Sneha Hassan" };
-  return {
+  return pageMeta({
     title: `${post.title} | Sneha Hassan`,
-    description: post.summary || undefined,
-    openGraph: { title: post.title, description: post.summary || undefined, type: "article" },
-  };
+    description: post.summary || `${post.title}, a post by Sneha Hassan.`,
+    path: `/blog/${post.slug}`,
+    image: `/blog/${post.slug}/opengraph-image`,
+    type: "article",
+    publishedTime: post.date,
+    tags: post.tags,
+  });
 }
 
 export default async function PostPage({ params }: Params) {
@@ -59,6 +64,26 @@ export default async function PostPage({ params }: Params) {
           </div>
         )}
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd({
+              "@type": "BlogPosting",
+              headline: post.title,
+              description: post.summary,
+              datePublished: post.date,
+              dateModified: post.date,
+              url: `${SITE_URL}/blog/${post.slug}`,
+              mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+              image: `${SITE_URL}/blog/${post.slug}/opengraph-image`,
+              keywords: post.tags.join(", "),
+              wordCount: post.body.split(/\s+/).filter(Boolean).length,
+              author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "Sneha Hassan", url: SITE_URL },
+              publisher: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "Sneha Hassan" },
+              ...(post.medium ? { isBasedOn: post.medium } : {}),
+            }),
+          }}
+        />
         <article className="prose" dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }} />
 
         <PostEngagement slug={post.slug} />
