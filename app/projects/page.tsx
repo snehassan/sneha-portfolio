@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageShell } from "@/components/PageShell";
 import { projects, archive, type Project } from "@/data/projects";
 
-export const metadata: Metadata = { title: "Projects | Sneha Hassan" };
+export const metadata: Metadata = pageMeta({
+  title: "Projects | Sneha Hassan",
+  description:
+    "Projects by Sneha Hassan: LLM ensembles for biology at CMU, production ML pothole detection at Ather Energy, an AI tutor that won't give answers, RecoVR VR physiotherapy and more.",
+  path: "/projects",
+});
 
 function Card({ p, big }: { p: Project; big?: boolean }) {
   return (

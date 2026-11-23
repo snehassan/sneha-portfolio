@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageShell } from "@/components/PageShell";
 import { scribbles } from "@/data/scribbles";
 
-export const metadata: Metadata = { title: "Scribbles | Sneha Hassan" };
+export const metadata: Metadata = pageMeta({
+  title: "Scribbles | Sneha Hassan",
+  description:
+    "Short notes and loose thoughts from Sneha Hassan, a software and AI/ML engineer.",
+  path: "/scribbles",
+});
 
 export default function Scribbles() {
   return (

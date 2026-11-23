@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { NameHeading } from "@/components/NameHeading";
 import { SiteNav } from "@/components/SiteNav";
+import type { Metadata } from "next";
+import { pageMeta, jsonLd, personJsonLd, DEFAULT_DESCRIPTION, SITE_URL } from "@/lib/seo";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TrainWord } from "@/components/TrainWord";
 import { CurrentProjects } from "@/components/CurrentProjects";
@@ -39,6 +41,13 @@ const fallbackWriting = [
   "Potholes, scooters, and 92% accuracy",
 ];
 
+export const metadata: Metadata = pageMeta({
+  title: "Sneha Hassan | Software & AI/ML Engineer",
+  description: DEFAULT_DESCRIPTION,
+  path: "/",
+  type: "profile",
+});
+
 export default async function Home() {
   const articles = await getMediumArticles(3);
   // Site blog posts come first, then Medium fills the list up to three.
@@ -61,6 +70,18 @@ export default async function Home() {
         lineHeight: 1.65,
       }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd({
+            "@graph": [
+              personJsonLd,
+              { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "Sneha Hassan", publisher: { "@id": `${SITE_URL}/#person` } },
+              { "@type": "ProfilePage", url: SITE_URL, mainEntity: { "@id": `${SITE_URL}/#person` } },
+            ],
+          }),
+        }}
+      />
       <SiteNav className="site-nav--home" />
 
       <NameHeading />

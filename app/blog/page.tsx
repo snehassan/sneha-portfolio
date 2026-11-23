@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { getAllPosts } from "@/lib/blog";
@@ -7,9 +8,13 @@ import { readingMinutes } from "@/lib/markdown";
 import { PostListStats } from "@/components/PostEngagement";
 
 export const metadata: Metadata = {
-  title: "Blog | Sneha Hassan",
-  description: "Posts by Sneha Hassan, written and published right here.",
+  ...pageMeta({
+    title: "Blog | Sneha Hassan",
+    description: "Sneha Hassan's blog: hands-on notes on ML, LLMs, software, DevOps and design, from deploying Juju charms to why UPI beats government websites.",
+    path: "/blog",
+  }),
 };
+// RSS link for feed readers is declared in the root layout.
 
 export default function Blog() {
   const posts = getAllPosts();
